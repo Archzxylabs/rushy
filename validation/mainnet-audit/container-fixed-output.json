@@ -1,0 +1,54 @@
+{
+  "productionContainerConfig": {
+    "ruleset": "meridian-abilities-v2",
+    "buildHash": "0x294e45f72b2cf614f02ad120e7d8e005426376d3130daf2ef0e28b4628ada844",
+    "online": true,
+    "settlement": {
+      "enabled": false,
+      "recoveryEnabled": true,
+      "mode": "mainnet",
+      "label": "Arc mainnet \u00b7 USDC (real funds)",
+      "chainId": 5042,
+      "contract": "0x38C8093907f6085e7c2Ad22335F3f4DA15466Efe",
+      "token": "0x3600000000000000000000000000000000000000",
+      "pool": "100",
+      "split": [
+        70,
+        30
+      ],
+      "reason": "Paid modes await the configured result signer and relay credentials."
+    },
+    "paidDuel": {
+      "enabled": false,
+      "recoveryEnabled": true,
+      "chainId": 5042,
+      "contract": "0xA6505430759EabF189b275251F72FDD357B0Abdc",
+      "token": "0x3600000000000000000000000000000000000000",
+      "entry": "1",
+      "pool": "2",
+      "feeBps": 500,
+      "winnerAward": "1900000",
+      "treasury": "0xEA2d8827B331C80649353f6f28525d10bfa44796",
+      "label": "Arc mainnet \u00b7 USDC (real funds)",
+      "reason": "Paid modes await the configured result signer and relay credentials."
+    },
+    "quickMatch": true,
+    "roster": [
+      "yot",
+      "mamio",
+      "benja",
+      "toad",
+      "ping",
+      "novee",
+      "tonashiro",
+      "bigchog",
+      "rogue",
+      "tabsu",
+      "venty",
+      "cookie"
+    ]
+  },
+  "scriptCspPresent": true,
+  "checkedAt": "2026-10-15",
+  "mainnetTransactionBroadcast": false
+}

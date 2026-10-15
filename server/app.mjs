@@ -4,6 +4,7 @@ import express from 'express';
 import {Server,matchMaker} from '@colyseus/core';
 import {WebSocketTransport} from '@colyseus/ws-transport';
 import {randomBytes,createHash} from 'node:crypto';
+import {ApiRateLimit} from './rate-limit.mjs';
 import {Store} from './store.mjs';
 import {Chain} from './chain.mjs';
 import {PaidDuels} from './paid-duels.mjs';
@@ -17,23 +18,24 @@ export async function startServer(options={}) {
  const port=options.port??Number(process.env.PORT||5174),host=options.host||process.env.HOST||'127.0.0.1';
  const store=options.store||new Store(options.dbPath||process.env.DATABASE_PATH||path.join(import.meta.dirname,'data/house-cup.sqlite'));
  const chain=options.chain||new Chain(store,options.env||process.env);await chain.initialize();
- const app=express(),permits=new Map(),roomInvites=new Map(),buckets=new Map();
+ const app=express(),permits=new Map(),roomInvites=new Map(),rateLimit=new ApiRateLimit(options.rateLimits);
  const env=options.env||process.env;
  let origin=options.origin||process.env.PUBLIC_ORIGIN||`http://localhost:${port}`,closing=false;
  const additionalOrigins=new Set(String(env.ADDITIONAL_ALLOWED_ORIGINS||'').split(',').map(v=>v.trim()).filter(Boolean));
  const allowedOrigin=value=>!value||value===origin||value===origin.replace('localhost','127.0.0.1')||additionalOrigins.has(value);
+ const scriptHashes=[...new Set(fs.readdirSync(root).filter(f=>f.endsWith('.html')).flatMap(f=>[...fs.readFileSync(path.join(root,f),'utf8').matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(m=>! /\bsrc\s*=/.test(m[1])).map(m=>`'sha256-${createHash('sha256').update(m[2]).digest('base64')}'`)))];
+ const csp=()=>`default-src 'self'; script-src 'self' ${scriptHashes.join(' ')}; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' ${origin.replace(/^http/,'ws')} ${origin.replace('localhost','127.0.0.1').replace(/^http/,'ws')} ${chain.mode==='local-mock'?new URL(chain.rpc).origin:''}; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; frame-src 'self'; form-action 'self'`;
  const context={store,permits,onError(){console.error('CHOG authority operation failed; result requires verification.');}};
  const transport=new WebSocketTransport({maxPayload:4096,pingInterval:3000,pingMaxRetries:2,beforeUpgrade:(request)=>{if(!allowedOrigin(request.headers.get('origin')))return new Response('Origin not allowed',{status:403});}});
  const gameServer=new Server({greet:false,transport,publicAddress:env.PUBLIC_WS_ADDRESS||undefined,express:target=>{
   target.disable('x-powered-by');
   target.use((req,res,next)=>{
-   res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Content-Type-Options','nosniff');
+   res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('X-Frame-Options','SAMEORIGIN');res.setHeader('Content-Security-Policy',csp());
    if(req.path.startsWith('/api')){
     res.setHeader('Cache-Control','no-store');
     if(!allowedOrigin(req.headers.origin))return res.status(403).json({error:'Origin not allowed'});
     if(req.method!=='GET'&&!req.headers.origin&&!req.headers.authorization)return res.status(403).json({error:'Same-origin or bearer request required'});
-    const key=(req.headers.authorization||req.socket.remoteAddress||'guest')+req.path.split('/').slice(0,3).join('/');
-    const now=Date.now(),b=buckets.get(key)||{at:now,n:0};if(now-b.at>60000){b.at=now;b.n=0;}b.n++;buckets.set(key,b);if(b.n>300)return res.status(429).json({error:'Too many requests; wait a moment'});
+    if(!rateLimit.allow(req,session(req),env.TRUST_RAILWAY_EDGE==='1')){res.setHeader('Retry-After','60');return res.status(429).json({error:'Too many requests; wait a moment'});}
    }next();
   });
   target.use(express.json({limit:'12kb'}));target.use(app);
@@ -53,7 +55,7 @@ export async function startServer(options={}) {
    try{const roomId=await createRoom({matchId:id,sessions,characters:pair.map(p=>p.chog),nicknames:pair.map(p=>p.nickname),restricted:true,matchKind:'quick',stage:'house-cup'});store.queueMatched(pair,{matchId:id,roomId});}
    catch(error){for(const p of pair)store.queueClear(p.session_id);store.recordResult(id,{outcome:'Void',winnerSession:null,reason:'room_creation_failed'},[]);throw error;}
   }
-  if(duels.enabled)while((pair=store.queuePair('paid'))){
+  await duels.refreshReadiness();if(duels.accepting&&chain.accepting)while((pair=store.queuePair('paid'))){
    try{const a=store.db.prepare('SELECT * FROM sessions WHERE id=?').get(pair[0].session_id);const d=duels.create(a,{chog:pair[0].chog,nickname:pair[0].nickname},pair[1]);store.queueMatched(pair,{duelId:d.id});}
    catch(error){for(const p of pair)store.queueClear(p.session_id);throw error;}
   }
@@ -94,7 +96,7 @@ export async function startServer(options={}) {
  store.db.prepare('DELETE FROM match_queue').run();
  route('get','/api/config',()=>({ruleset:RULESET,buildHash:BUILD_HASH,online:true,settlement:chain.info(),paidDuel:duels.info(),quickMatch:true,roster:Object.keys(ROSTER)}));
  route('get','/api/session',(req,res)=>{let token=readCookie(req),s=store.session(token);if(!s){const created=store.newSession();token=created.token;s=store.session(token);res.setHeader('Set-Cookie',`chog_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=86400${origin.startsWith('https:')?'; Secure':''}`);}return {token,wallet:s.wallet,walletExpires:s.wallet_expires};});
- route('post','/api/queue',async req=>{const s=authenticated(req);if(req.body.kind==='paid')duels.requireEnabled();store.queueJoin(s,req.body);await pairQueue();return queueReport(s.id);});
+ route('post','/api/queue',async req=>{const s=authenticated(req);if(req.body.kind==='paid')await duels.requireAccepting();store.queueJoin(s,req.body);await pairQueue();return queueReport(s.id);});
  route('get','/api/queue',req=>queueReport(authenticated(req).id));
  route('post','/api/queue/cancel',req=>{const s=authenticated(req);store.queueCancel(s.id);return queueReport(s.id);});
  route('post','/api/queue/ack',req=>{const s=authenticated(req);if(store.queueStatus(s.id)?.state==='Matched')store.queueClear(s.id);return {ok:true};});
@@ -104,9 +106,9 @@ export async function startServer(options={}) {
  // outstanding login nonces so a delayed signature cannot restore a logout.
  route('post','/api/auth/logout',req=>{store.logoutWallet(authenticated(req));return {wallet:null,walletExpires:0};});
  const requiredDuel=id=>{const d=store.duel(id);if(!d)throw Error('Duel not found');return d;};
- route('post','/api/duels',req=>duels.create(authenticated(req),req.body));
+ route('post','/api/duels',async req=>{await duels.requireAccepting();return duels.create(authenticated(req),req.body);});
  route('get','/api/duels/:id',req=>duels.report(req.params.id,session(req)?.id));
- route('post','/api/duels/:id/join',req=>duels.join(req.params.id,req.body.invite,authenticated(req),req.body));
+ route('post','/api/duels/:id/join',async req=>{await duels.requireAccepting();return duels.join(req.params.id,req.body.invite,authenticated(req),req.body);});
  route('get','/api/duels/:id/funding-status',req=>duels.fundingStatus(requiredDuel(req.params.id),authenticated(req)));
  route('post','/api/duels/:id/funding',req=>duels.funding(requiredDuel(req.params.id),authenticated(req)));
  route('post','/api/duels/:id/funding-progress',req=>duels.note(requiredDuel(req.params.id),authenticated(req),req.body.phase,req.body.hash));
@@ -120,7 +122,7 @@ export async function startServer(options={}) {
   const id=store.newMatch(null,'casual',[s.id,null]);const roomId=await createRoom({matchId:id,sessions:[s.id,null],characters:[chog,'mamio'],invite,stage});return {roomId,invite};
  });
  route('get','/api/rooms/:id',req=>{const s=authenticated(req),data=roomInvites.get(req.params.id);if(!data||(!(data.host===s.id)&&req.query.invite!==data.key))throw Error('Invitation required');return {roomId:req.params.id,invite:data.key};});
- route('post','/api/cups',req=>{const s=authenticated(req),mode=req.body.mode||'practice';if(store.db.prepare('SELECT count(*) n FROM cups WHERE host=? AND state NOT IN (?,?)').get(s.id,'Complete','Cancelled').n>=4)throw Error('Finish or cancel an existing Cup before creating another');if(mode!=='practice'&&(!chain.enabled||mode!==chain.mode))throw Error('Funded prizes are unavailable; choose Practice Cup');return store.report(store.createCup(s,req.body.name,mode).id,s.id);});
+ route('post','/api/cups',async req=>{const s=authenticated(req),mode=req.body.mode||'practice';if(store.db.prepare('SELECT count(*) n FROM cups WHERE host=? AND state NOT IN (?,?)').get(s.id,'Complete','Cancelled').n>=4)throw Error('Finish or cancel an existing Cup before creating another');if(mode!=='practice'){await chain.requireAccepting();if(mode!==chain.mode)throw Error('Funded prizes are unavailable; choose Practice Cup');}return store.report(store.createCup(s,req.body.name,mode).id,s.id);});
  route('get','/api/cups/:id',req=>{const report=store.report(req.params.id,session(req)?.id);if(!report)throw Error('Cup not found');return report;});
  route('post','/api/cups/:id/check-in',req=>{const s=authenticated(req);const slot=store.joinCup(req.params.id,req.body.invite,s,req.body.nickname,req.body.chog);return {slot,report:store.report(req.params.id,s.id)};});
  route('post','/api/cups/:id/replace',req=>{const s=authenticated(req);store.uncheck(req.params.id,s,req.body.slot);return store.report(req.params.id,s.id);});
@@ -143,7 +145,7 @@ export async function startServer(options={}) {
  app.use((error,req,res,next)=>{if(!res.headersSent)res.status(error.status||400).json({error:'Request could not be read'});});
  await gameServer.listen(port,host);const actualPort=transport.server.address().port;if(port===0)origin=`http://localhost:${actualPort}`;
  const interval=setInterval(()=>{if(!closing){chain.poll().catch(()=>{});duels.poll().catch(()=>{});}},1000);interval.unref();
- const cleanup=setInterval(()=>{for(const [k,v] of buckets)if(Date.now()-v.at>120000)buckets.delete(k);for(const cup of store.db.prepare('SELECT id FROM cups WHERE state=?').all('Active'))advanceCup(cup.id).catch(()=>{});},5000);cleanup.unref();
+ const cleanup=setInterval(()=>{rateLimit.prune();for(const cup of store.db.prepare('SELECT id FROM cups WHERE state=?').all('Active'))advanceCup(cup.id).catch(()=>{});},5000);cleanup.unref();
  store.prune();const retention=setInterval(()=>store.prune(),3600000);retention.unref();
  return {port:actualPort,origin,store,chain,duels,gameServer,context,async close(){closing=true;clearInterval(interval);clearInterval(cleanup);clearInterval(retention);await gameServer.gracefullyShutdown(false);store.close();}};
 }

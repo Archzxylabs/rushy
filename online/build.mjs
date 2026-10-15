@@ -1,2 +1,2 @@
 /* Generated combat build identity. */
-export const BUILD_HASH="0x538cab4fc9369a1d919da60fe1c96efc42eb4db617f95ed3837ffdbe6910bc69";
+export const BUILD_HASH="0x294e45f72b2cf614f02ad120e7d8e005426376d3130daf2ef0e28b4628ada844";

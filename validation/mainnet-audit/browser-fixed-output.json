@@ -1,0 +1,12 @@
+{
+  "scope": "localhost chain 31337, public Anvil wallets and mock token; no mainnet transactions",
+  "xssPayloadLength": 39,
+  "storedXssBlocked": true,
+  "scriptCspEnforced": true,
+  "mobilePaidEntryBoots": true,
+  "paidModeReachable": true,
+  "inviteCreated": true,
+  "inviteJoinedAndReloadResumed": true,
+  "twoEntriesAndWinnerPayoutVerified": true,
+  "browserErrors": []
+}

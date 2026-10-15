@@ -12,8 +12,8 @@
     "solan.js": "9a3cc80110507413799913b15eff3166706ff833718ea916a6801905d0aa1793",
     "nib.js": "54d089e4059e9b24b75609a4cf3599bbe790fa9724d041fb0e987363563525fa",
     "edda.js": "0c46d3843921de1fd8241694318046225e28794a07e3ad003133e9da99e236bd",
-    "game.js": "345d3ce48cacb254f6c1ef323eb60128c810dacc44e2bbe2769b756b54ac4169",
-    "meridian-abilities.js": "18dfc9960cd4ca5b209abbbb0eee0d233cc695925f9818d3023109f4d43f7bb8"
+    "game.js": "fd9b0c584d187911ccbc2b74e9bd8a8a4fa96a6a4a8c26abce801085d10f4a68",
+    "meridian-abilities.js": "c1846393c1ac14a975d1c634014bf119599ccc40a9a09a6b5152aff794c22352"
   },
   "ownerHitMetadata": "P2 hit metadata normalized to P1 counterpart; symmetric physics in core.mjs"
 }

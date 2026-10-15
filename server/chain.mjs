@@ -18,38 +18,60 @@ export class Chain {
  constructor(store,env=process.env) {
   this.store=store;this.enabled=false;this.busy=false;this.onAccepted=()=>{};
   const local=env.CHAIN_MODE==='local-mock';
-  this.chainId=local?31337:5042;this.label=local?'Local mock token · no monetary value':'Arc mainnet · USDC (real funds)';this.mode=local?'local-mock':'testnet';
+  this.chainId=local?31337:5042;this.label=local?'Local mock token · no monetary value':'Arc mainnet · USDC (real funds)';this.mode=local?'local-mock':'mainnet';
   this.token=local?env.LOCAL_MOCK_TOKEN:USDC;this.address=env.CUP_ESCROW_ADDRESS;this.rpc=env.ARC_MAINNET_RPC_URL||env.LOCAL_MOCK_RPC_URL||'https://rpc.mainnet.arc.io';
   this.reason='Arc Cup prizes are not configured on this host. Practice Cup and free PvP are available.';
-  if(!local&&env.ENABLE_ARC_PRIZES!=='1')return;
-  if(!env.RESULT_SIGNER_PRIVATE_KEY||!env.RELAY_PRIVATE_KEY||!isAddress(this.address||'')||!isAddress(this.token||''))return;
+  this.accepting=false;this.activationRequested=local||env.ENABLE_ARC_PRIZES==='1';this.minRelayBalance=parseEther(env.RELAY_MIN_BALANCE_USDC||'0.1');
+  if(!isAddress(this.address||'')||!isAddress(this.token||''))return;
   if(local&&!['127.0.0.1','localhost','::1'].includes(new URL(this.rpc).hostname))throw Error('Local mock mode requires a localhost RPC');
   const artifact=path.resolve(import.meta.dirname,'../contracts/out/HouseCupEscrow.sol/HouseCupEscrow.json');
   if(!fs.existsSync(artifact)){this.reason='Prize service is preparing its contract build.';return;}
   this.artifact=JSON.parse(fs.readFileSync(artifact));this.abi=this.artifact.abi;
-  const chain=defineChain({id:this.chainId,name:local?'Local mock development':'Arc mainnet',nativeCurrency:{name:'USD Coin',symbol:'USDC',decimals:18},rpcUrls:{default:{http:[this.rpc]}}});
-  this.signer=privateKeyToAccount(env.RESULT_SIGNER_PRIVATE_KEY);this.relay=privateKeyToAccount(env.RELAY_PRIVATE_KEY);
-  if(this.signer.address.toLowerCase()===this.relay.address.toLowerCase())throw Error('Result signer and relay must be separate accounts');
+  const chain=defineChain({id:this.chainId,name:local?'Local mock development':'Arc mainnet',nativeCurrency:{name:local?'Test Ether':'USD Coin',symbol:local?'ETH':'USDC',decimals:18},rpcUrls:{default:{http:[this.rpc]}}});
+  try{if(env.RESULT_SIGNER_PRIVATE_KEY)this.signer=privateKeyToAccount(env.RESULT_SIGNER_PRIVATE_KEY);if(env.RELAY_PRIVATE_KEY)this.relay=privateKeyToAccount(env.RELAY_PRIVATE_KEY);}catch{this.credentialsInvalid=true;}
+  if(this.signer&&this.relay&&this.signer.address.toLowerCase()===this.relay.address.toLowerCase())this.credentialsInvalid=true;
   this.public=createPublicClient({chain,transport:http(this.rpc,{timeout:8000,retryCount:0})});
-  this.wallet=createWalletClient({chain,account:this.relay,transport:http(this.rpc,{timeout:8000,retryCount:0})});
+  if(this.relay)this.wallet=createWalletClient({chain,account:this.relay,transport:http(this.rpc,{timeout:8000,retryCount:0})});
   this.buildHash=BUILD_HASH;this.fundingRecovery=new FundingRecovery(this,cupHash);
   this.configured=true;
  }
- async initialize(){if(!this.configured)return;try{
-  if(await this.public.getChainId()!==this.chainId)throw Error('Wrong chain');
-  const [code,token,relay,signer,decimals]=await Promise.all([this.public.getBytecode({address:this.address}),this.read('token'),this.read('relay'),this.read('nextSigner'),this.public.readContract({address:this.token,abi:tokenAbi,functionName:'decimals'})]);
-  if(!verifiedRuntime(code,this.artifact)||token.toLowerCase()!==this.token.toLowerCase()||relay.toLowerCase()!==this.relay.address.toLowerCase()||signer.toLowerCase()!==this.signer.address.toLowerCase()||decimals!==6)throw Error('Contract configuration mismatch');
-  this.enabled=true;this.reason=null;
- }catch{this.enabled=false;this.reason='Prize service could not verify the network or contract. Free modes are available.';}}
+ async initialize(){await this.refreshReadiness(true);}
+ // Verification enables recovery reads; admission additionally needs healthy operational wallets.
+ async refreshReadiness(force=false){
+  if(!this.configured)return;
+  if(this.readinessWork)return this.readinessWork;
+  if(!force&&this.readinessAt&&Date.now()-this.readinessAt<5000)return;
+  this.readinessWork=(async()=>{this.accepting=false;this.relayReady=false;try{
+   if(await this.public.getChainId()!==this.chainId){this.enabled=false;throw Error('Wrong chain');}
+   if(!this.enabled||!this.verifiedAt||Date.now()-this.verifiedAt>60000){
+    const [code,token,relay,decimals]=await Promise.all([this.public.getBytecode({address:this.address}),this.read('token'),this.read('relay'),this.public.readContract({address:this.token,abi:tokenAbi,functionName:'decimals'})]);
+    if(!verifiedRuntime(code,this.artifact)||token.toLowerCase()!==this.token.toLowerCase()||decimals!==6){this.enabled=false;throw Error('Contract configuration mismatch');}
+    this.contractRelay=relay;this.enabled=true;this.verifiedAt=Date.now();
+   }
+   const [paused,signer,balance]=await Promise.all([this.read('paused'),this.read('nextSigner'),this.public.getBalance({address:this.contractRelay})]);
+   this.relayBalance=balance;this.paused=paused;this.nextSigner=signer;
+   this.relayReady=!!this.relay&&this.relay.address.toLowerCase()===this.contractRelay.toLowerCase();
+   if(!this.activationRequested)this.reason='Paid modes are disabled by this host.';
+   else if(this.credentialsInvalid||!this.signer||!this.relay)this.reason='Paid modes await the configured result signer and relay credentials.';
+   else if(!this.relayReady||signer.toLowerCase()!==this.signer.address.toLowerCase())this.reason='Operational wallets do not match the contract roles.';
+   else if(paused)this.reason='The Cup escrow is paused. Existing claims remain available.';
+   else if(balance<this.minRelayBalance)this.reason='The relay needs network gas before new entries can be accepted.';
+   else {this.accepting=true;this.reason=null;}
+  }catch{this.reason='Prize service could not verify the network or contract. Existing credits can be recovered after connectivity returns.';}
+  finally{this.readinessAt=Date.now();}})();
+  try{await this.readinessWork;}finally{this.readinessWork=null;}
+ }
+ async requireAccepting(){await this.refreshReadiness();if(!this.accepting)throw Error(this.reason||'New funded prizes are unavailable');}
+
  read(functionName,args=[]){return this.public.readContract({address:this.address,abi:this.abi,functionName,args});}
- info(){return {enabled:this.enabled,mode:this.mode,label:this.label,chainId:this.chainId,contract:this.enabled?this.address:null,token:this.enabled?this.token:null,pool:'100',split:[70,30],reason:this.reason};}
- async funding(cup,session){if(!this.enabled)throw Error('Arc Cup prizes are unavailable');if(!session.wallet||session.wallet_expires<Date.now())throw Error('Verify the sponsor wallet first');
+ info(){return {enabled:!!this.accepting,recoveryEnabled:!!this.enabled,mode:this.mode,label:this.label,chainId:this.chainId,contract:this.enabled?this.address:null,token:this.enabled?this.token:null,pool:'100',split:[70,30],reason:this.reason};}
+ async funding(cup,session){await this.requireAccepting();if(!session.wallet||session.wallet_expires<Date.now())throw Error('Verify the sponsor wallet first');
   if(cup.mode!==this.mode||cup.state!=='Draft')throw Error('Cup cannot be funded in this mode or state');
   const status=await this.fundingRecovery.plan(cup,session);if(status.alreadyFunded)return status;
   const steps=[...(status.approvalNeeded?[{phase:'approval',transaction:{to:this.token,data:encodeFunctionData({abi:tokenAbi,functionName:'approve',args:[this.address,100000000n]}),value:'0x0'}}]:[]),{phase:'deposit',transaction:{to:this.address,data:encodeFunctionData({abi:this.abi,functionName:'createFundedCup',args:[cupHash(cup.id),session.wallet,BUILD_HASH]}),value:'0x0'}}];
   return {chainId:this.chainId,contract:this.address,label:this.label,token:this.token,amount:'100000000',steps,transactions:steps.map(step=>step.transaction),status};
  }
- async fundingStatus(cup,session){if(!this.enabled)throw Error('Arc Cup prizes are unavailable');return this.fundingRecovery.status(cup,session);}
+ async fundingStatus(cup,session){await this.refreshReadiness();if(!this.enabled)throw Error('Arc Cup prizes are unavailable');return this.fundingRecovery.status(cup,session);}
  async noteFunding(cup,session,phase,hash){if(!this.enabled)throw Error('Arc Cup prizes are unavailable');return this.fundingRecovery.note(cup,session,phase,hash);}
  async confirmFunding(cup,session,hash){if(!this.enabled)throw Error('Arc Cup prizes unavailable');if(!/^0x[0-9a-f]{64}$/i.test(hash||''))throw Error('Invalid transaction hash');
   if(cup.state!=='Draft'&&cup.funding_tx?.toLowerCase()===hash.toLowerCase())return;
@@ -58,7 +80,7 @@ export class Chain {
   const state=await this.read('getCup',[cupHash(cup.id)]);if(!event||state.state!==1||state.rulesetHash!==BUILD_HASH||state.sponsor.toLowerCase()!==session.wallet)throw Error('Funding event does not match this Cup');
   this.store.updateCup(cup.id,{state:'Funded',sponsor:state.sponsor,chain_id:String(this.chainId),chain_cup_id:cupHash(cup.id),contract:this.address,funding_tx:hash});
  }
- async lock(cup,participants){if(!this.enabled||cup.state!=='Funded'||participants.some(p=>!p.checked||!p.accepted||!p.wallet))throw Error('Funding and four verified participants are required');
+ async lock(cup,participants){await this.requireAccepting();if(!this.enabled||cup.state!=='Funded'||participants.some(p=>!p.checked||!p.accepted||!p.wallet))throw Error('Funding and four verified participants are required');
   if(new Set(participants.map(p=>p.wallet)).size!==4)throw Error('Recipients must be unique');
   this.store.enqueue({id:cup.id+':lock',cupId:cup.id,kind:'lock',payload:{recipients:participants.map(p=>p.wallet)}});this.store.updateCup(cup.id,{state:'Locking'});
  }
@@ -90,14 +112,21 @@ export class Chain {
   return {functionName:'submitResult',args:[{...message,finishedAt:BigInt(message.finishedAt),expiresAt:BigInt(message.expiresAt)},signature]};
  }
  async poll() {
-  if(!this.enabled||this.busy)return;this.busy=true;
-  try{for(const job of this.store.outbox()){
-   if(job.payload._nextTry>Date.now())continue;
+  if(this.busy)return;this.busy=true;
+  try{await this.refreshReadiness();if(!this.enabled||!this.relayReady)return;for(const job of this.store.outbox()){
+   this.store.checkOutbox(job.id);
    try{if(job.tx_hash){let receipt;try{receipt=await this.public.getTransactionReceipt({hash:job.tx_hash});}catch{}
     if(receipt){if(receipt.status!=='success'){job.payload._reverted=true;this.store.updateOutbox(job.id,{state:'failed',payload:job.payload,error:'Transaction reverted; no payout was confirmed'});continue;}await this.confirm(job,receipt);continue;}
-    if(job.payload.rawTx&&job.attempts<3){const rows=this.store.db.prepare('SELECT payload,cup_id FROM outbox WHERE updated>? OR cup_id=?').all(Date.now()-86400000,job.cup_id);if(rows.filter(r=>r.cup_id===job.cup_id).reduce((n,r)=>n+(JSON.parse(r.payload)._broadcasts||0),0)>=20||rows.reduce((n,r)=>n+(JSON.parse(r.payload)._broadcasts||0),0)>=100){this.store.updateOutbox(job.id,{error:'Relay attempt budget reached; checking the existing receipt'});continue;}job.payload._broadcasts=(job.payload._broadcasts||0)+1;job.payload._nextTry=Date.now()+3000;this.store.updateOutbox(job.id,{attempts:job.attempts+1,payload:job.payload});await this.public.sendRawTransaction({serializedTransaction:job.payload.rawTx});}continue;
+    if(job.payload.rawTx&&job.attempts<3){
+     const usage=this.store.relayUsage(job);
+     if(usage.resourceBroadcasts>=20||usage.dailyBroadcasts>=(job.kind==='duel-create'?20:100)){this.store.updateOutbox(job.id,{error:'Relay attempt budget reached; checking the existing receipt'});continue;}
+     job.payload._broadcasts=(job.payload._broadcasts||0)+1;job.payload._nextTry=Date.now()+3000;
+     this.store.transaction(()=>{this.store.reserveRelay(job);this.store.updateOutbox(job.id,{attempts:job.attempts+1,payload:job.payload});});
+     await this.public.sendRawTransaction({serializedTransaction:job.payload.rawTx});
+    }continue;
    }
    if(job.attempts>=3)continue;
+   if(job.kind==='duel-create'){await this.requireAccepting();await this.duelService.requireAccepting();}
    const {address=this.address,abi=this.abi,...call}=await this.prepare(job),gas=await this.public.estimateContractGas({address,abi,account:this.relay.address,...call});
    const gasLimit=gasWithBuffer(gas);
    // A provider can report a stale pending nonce immediately after broadcast.
@@ -107,32 +136,32 @@ export class Chain {
    const nonce=Math.max(pendingNonce,latestNonce,reservedNonce===null?0:reservedNonce+1);
    const request=await this.wallet.prepareTransactionRequest({to:address,data:encodeFunctionData({abi,...call}),gas:gasLimit,nonce});
    const estimate=gasLimit*(request.maxFeePerGas??request.gasPrice);
-   const jobs=this.store.db.prepare('SELECT payload,attempts,updated FROM outbox WHERE cup_id=?').all(job.cup_id);
-   const spent=jobs.reduce((sum,j)=>sum+BigInt(JSON.parse(j.payload)._gasReserved||'0'),0n);
-   const dayJobs=this.store.db.prepare('SELECT payload FROM outbox WHERE updated>?').all(Date.now()-86400000),daily=dayJobs.reduce((sum,j)=>sum+BigInt(JSON.parse(j.payload)._gasReserved||'0'),0n);
-   if(estimate+spent>parseEther('2')||estimate+daily>parseEther('10')||jobs.reduce((n,j)=>n+(JSON.parse(j.payload)._broadcasts||0),0)>=20||dayJobs.reduce((n,j)=>n+(JSON.parse(j.payload)._broadcasts||0),0)>=100)throw Error('Relay budget limit reached');
+   const usage=this.store.relayUsage(job);
+   if(estimate+usage.resourceGas>parseEther('2')||estimate+usage.dailyGas>parseEther(job.kind==='duel-create'?'0.5':'10')||usage.resourceBroadcasts>=20||usage.dailyBroadcasts>=(job.kind==='duel-create'?20:100))throw Error('Relay budget limit reached');
+   if(job.kind==='duel-create'&&await this.public.getBalance({address:this.relay.address})<estimate+this.minRelayBalance)throw Error('Relay gas reserve is reserved for existing settlements');
    const rawTx=await this.wallet.signTransaction(request),hash=keccak256(rawTx);job.payload.rawTx=rawTx;job.payload._gasReserved=(BigInt(job.payload._gasReserved||'0')+estimate).toString();job.payload._broadcasts=(job.payload._broadcasts||0)+1;job.payload._nextTry=Date.now()+1000;
    // An activation may be cancelled while RPC preparation awaits its response.
    if(this.store.db.prepare('SELECT state FROM outbox WHERE id=?').get(job.id)?.state!=='pending')continue;
    // Save exact signed bytes/hash BEFORE sending. Retry broadcasts the same transaction.
-   this.store.updateOutbox(job.id,{state:'submitted',attempts:job.attempts+1,tx_hash:hash,tx_nonce:nonce,payload:job.payload,error:null});
-   await this.public.sendRawTransaction({serializedTransaction:rawTx});
+   this.store.transaction(()=>{this.store.reserveRelay(job,estimate);this.store.updateOutbox(job.id,{state:'submitted',attempts:job.attempts+1,tx_hash:hash,tx_nonce:nonce,payload:job.payload,error:null});});
+   job.tx_hash=hash;await this.public.sendRawTransaction({serializedTransaction:rawTx});
    }catch(error){if(!job.tx_hash){job.payload._prepareFailures=(job.payload._prepareFailures||0)+1;job.payload._nextTry=Date.now()+3000;}this.store.updateOutbox(job.id,{payload:job.payload,...(!job.tx_hash&&job.payload._prepareFailures>=3?{state:'failed'}:{}),error:typeof error.shortMessage==='string'?error.shortMessage.slice(0,160):'Chain operation pending; check network, budget or locked contract state'});}
   }}finally{this.busy=false;}
  }
  async confirm(job,receipt) {
   if(job.kind.startsWith('duel-'))return this.duelService.confirm(job,receipt);
-  const events=this.events(receipt),id=cupHash(job.cup_id),event=events.find(e=>e.args.cupId===id);
-  if(!event)throw Error('Receipt does not contain this Cup');
+  if(receipt.status!=='success')throw Error('Transaction was not successful');
+  const id=cupHash(job.cup_id),events=this.events(receipt).filter(e=>e.args.cupId===id);
+  if(!events.length)throw Error('Receipt does not contain this Cup');
   const state=await this.read('getCup',[id]);
   if(job.kind==='lock'){if(!events.some(e=>e.eventName==='CupLocked')||state.state!==2||state.participants.some((a,i)=>a.toLowerCase()!==job.payload.recipients[i].toLowerCase()))throw Error('Locked participant mismatch');this.store.updateCup(job.cup_id,{state:'Active',locked:Number(state.lockedAt)*1000});}
   else if(job.kind==='result'){
-   const r=job.payload.signed.message,e=events.find(e=>e.eventName==='MatchAccepted');
+   const r=job.payload.signed.message,e=events.find(e=>e.eventName==='MatchAccepted'&&e.args.stage===r.stage);
    if(!e||e.args.stage!==r.stage||e.args.winner.toLowerCase()!==r.winnerRecipient.toLowerCase()||e.args.outcomeType!==r.outcomeType||e.args.replayHash!==r.replayHash)throw Error('Result event mismatch');
    if(state.state===3){this.store.updateCup(job.cup_id,{state:'Complete'});const awards=events.filter(e=>e.eventName==='CreditAwarded');for(const a of awards)this.store.enqueue({id:job.cup_id+':withdraw:'+a.args.recipient.toLowerCase(),cupId:job.cup_id,kind:'withdraw',payload:{recipient:a.args.recipient,amount:a.args.amount.toString()}});}
    else if(state.state===4){this.store.updateCup(job.cup_id,{state:'Cancelled',cancel_reason:'verified_void'});this.store.enqueue({id:job.cup_id+':refund',cupId:job.cup_id,kind:'withdraw',payload:{recipient:state.sponsor,amount:'100000000'}});}
   }else if(job.kind==='withdraw'){
-   const e=events.find(e=>e.eventName==='Paid');if(!e||e.args.recipient.toLowerCase()!==job.payload.recipient.toLowerCase()||e.args.amount!==BigInt(job.payload.amount)||e.args.token.toLowerCase()!==this.token.toLowerCase())throw Error('Payout event mismatch');
+   const e=events.find(e=>e.eventName==='Paid'&&e.args.recipient.toLowerCase()===job.payload.recipient.toLowerCase()&&e.args.amount===BigInt(job.payload.amount)&&e.args.token.toLowerCase()===this.token.toLowerCase());if(!e)throw Error('Payout event mismatch');
    const transferred=receipt.logs.some(log=>{if(log.address.toLowerCase()!==this.token.toLowerCase())return false;try{const event=decodeEventLog({abi:transferAbi,...log});return event.args.from.toLowerCase()===this.address.toLowerCase()&&event.args.to.toLowerCase()===job.payload.recipient.toLowerCase()&&event.args.value===BigInt(job.payload.amount);}catch{return false;}});
    if(!transferred)throw Error('Token transfer was not verified');
   }else if(job.kind==='refund-expired'){if(state.state!==4)throw Error('Refund state mismatch');this.store.updateCup(job.cup_id,{state:'Cancelled',cancel_reason:'settlement_deadline'});this.store.enqueue({id:job.cup_id+':refund',cupId:job.cup_id,kind:'withdraw',payload:{recipient:state.sponsor,amount:'100000000'}});}

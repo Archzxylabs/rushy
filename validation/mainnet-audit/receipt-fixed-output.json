@@ -1,0 +1,7 @@
+{
+  "checkedAt": "2026-10-15T04:00:13.454Z",
+  "scope": "synthetic receipts decoded with deployed ABIs; no RPC or transactions",
+  "wrongCupPayoutRejected": true,
+  "wrongDuelPayoutRejected": true,
+  "validBatchConfirmed": true
+}

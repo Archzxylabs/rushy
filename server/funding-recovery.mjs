@@ -10,7 +10,7 @@ const pool=100000000n;
 export class FundingRecovery {
  constructor(chain,cupHash){this.chain=chain;this.store=chain.store;this.cupHash=cupHash;this.checks=new Map();}
  require(cup,session){
-  if(!this.chain.enabled||!cup||cup.mode!==this.chain.mode)throw Error('Test-token funding is unavailable');
+  if(!this.chain.enabled||!cup||cup.mode!==this.chain.mode)throw Error('USDC funding is unavailable');
   if(cup.host!==session.id)throw Error('Host access required');
  }
  async receipt(hash){if(!hash)return null;try{return await this.chain.public.getTransactionReceipt({hash});}catch(error){if(error instanceof TransactionReceiptNotFoundError||error.name==='TransactionReceiptNotFoundError')return null;throw error;}}
@@ -82,7 +82,7 @@ export class FundingRecovery {
    result.approvalFailed=receipt.status!=='success';
   }
   const allowance=await this.chain.public.readContract({address:this.chain.token,abi:allowanceAbi,functionName:'allowance',args:[wallet,this.chain.address]});
-  return {...result,approvalNeeded:allowance<pool,canFund:true,phase:allowance<pool?'approval-ready':'deposit-ready'};
+  return {...result,approvalNeeded:allowance<pool,canFund:!!this.chain.accepting,phase:allowance<pool?'approval-ready':'deposit-ready'};
  }
  async plan(cup,session){
   await this.begin(cup,session);

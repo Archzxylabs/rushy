@@ -35,8 +35,8 @@ test('manual retry rebroadcasts an unconfirmed transaction without replacing its
  try{const host=store.newSession(),cup=store.createCup(host,'Unavailable relay','local-mock'),raw='0x02abcd',hash='0x'+'33'.repeat(32);
   const id=store.enqueue({id:'unconfirmed',cupId:cup.id,kind:'withdraw',payload:{rawTx:raw,_broadcasts:3,_nextTry:Date.now()+60000,recipient:'0x'+'11'.repeat(20),amount:'1000000'}});
   store.updateOutbox(id,{state:'submitted',tx_hash:hash,tx_nonce:8,attempts:3});
-  const chain=new Chain(store,{}),sent=[];chain.enabled=true;chain.public={async getTransactionReceipt(){return null;},async sendRawTransaction({serializedTransaction}){sent.push(serializedTransaction);return hash;}};
-  chain.retry(cup.id);await chain.poll();const job=store.outbox()[0];
+  const chain=new Chain(store,{}),sent=[];chain.enabled=true;chain.relayReady=true;chain.public={async getTransactionReceipt(){return null;},async sendRawTransaction({serializedTransaction}){sent.push(serializedTransaction);return hash;}};
+  chain.retry(cup.id);await chain.poll();const job=store.outbox(false)[0];
   assert.deepEqual(sent,[raw]);assert.equal(job.tx_hash,hash);assert.equal(job.tx_nonce,8);assert.equal(job.payload.rawTx,raw);assert.equal(job.attempts,1);assert.equal(job.payload._broadcasts,4);
  }finally{store.close();}
 });

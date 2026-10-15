@@ -22,13 +22,24 @@ export class Store {
    CREATE TABLE IF NOT EXISTS paid_duels(id TEXT PRIMARY KEY,host TEXT,invite_hash TEXT,invite_token TEXT,players TEXT,characters TEXT,nicknames TEXT,wallets TEXT,state TEXT,created INTEGER,locked INTEGER,match_id TEXT,room_id TEXT,funded_mask INTEGER DEFAULT 0,start_block TEXT,cancel_reason TEXT);
    CREATE TABLE IF NOT EXISTS duel_funding(duel_id TEXT,wallet TEXT,start_block TEXT,scan_block TEXT,approval_tx TEXT,deposit_tx TEXT,updated INTEGER,PRIMARY KEY(duel_id,wallet));
    CREATE INDEX IF NOT EXISTS outbox_state ON outbox(state,updated);`);
+  // Idempotent migrations preserve existing payment journals and their signed bytes.
+  for(const [table,column] of [['outbox','checked'],['paid_duels','checked']])if(!this.db.prepare(`PRAGMA table_info(${table})`).all().some(c=>c.name===column))this.db.exec(`ALTER TABLE ${table} ADD COLUMN ${column} INTEGER NOT NULL DEFAULT 0`);
+  this.db.exec(`CREATE TABLE IF NOT EXISTS relay_budget(id TEXT PRIMARY KEY,job_id TEXT,cup_id TEXT,kind TEXT,created INTEGER,gas_reserved TEXT,broadcasts INTEGER);
+   CREATE INDEX IF NOT EXISTS relay_budget_day ON relay_budget(kind,created);
+   INSERT INTO relay_budget SELECT 'legacy:'||o.id,o.id,o.cup_id,o.kind,o.updated,coalesce(json_extract(o.payload,'$._gasReserved'),'0'),coalesce(json_extract(o.payload,'$._broadcasts'),0) FROM outbox o WHERE o.tx_hash IS NOT NULL AND NOT EXISTS(SELECT 1 FROM relay_budget b WHERE b.job_id=o.id);
+   CREATE TABLE IF NOT EXISTS duel_admissions(duel_id TEXT,wallet TEXT,created INTEGER,PRIMARY KEY(duel_id,wallet));
+   CREATE INDEX IF NOT EXISTS admission_wallet ON duel_admissions(wallet,created);
+   INSERT OR IGNORE INTO duel_admissions SELECT d.id,lower(w.value),d.created FROM paid_duels d,json_each(d.wallets) w WHERE w.value IS NOT NULL AND json_extract(d.players,'$[1]') IS NOT NULL;
+   CREATE INDEX IF NOT EXISTS outbox_fair ON outbox(state,checked);
+   CREATE INDEX IF NOT EXISTS duel_fair ON paid_duels(state,checked);
+   UPDATE cups SET mode='mainnet' WHERE mode='testnet' AND (chain_id IS NULL OR chain_id='5042');`);
  }
  transaction(fn){this.db.exec('BEGIN IMMEDIATE');try{const r=fn();this.db.exec('COMMIT');return r;}catch(e){this.db.exec('ROLLBACK');throw e;}}
  queueJoin(session,{chog,nickname,kind='casual'}={}){
   if(!ROSTER[chog])throw Error('Choose one of the 12 CHOG');
   nickname=String(nickname||'CHOG player').trim();if(nickname.length<2||nickname.length>24)throw Error('Nickname must be 2–24 characters');
   if(!['casual','paid'].includes(kind))throw Error('Unknown queue');
-  if(kind==='paid'&&(!session.wallet||session.wallet_expires<Date.now()))throw Error('Verify your testnet wallet before searching');
+  if(kind==='paid'&&(!session.wallet||session.wallet_expires<Date.now()))throw Error('Verify your wallet before searching');
   this.queueExpire();const current=this.queueStatus(session.id);
   if(current)return current;
   if(this.db.prepare('SELECT count(*) n FROM matches WHERE state IN (?,?) AND players LIKE ?').get('Scheduled','Playing','%'+session.id+'%').n>=4)throw Error('Leave an existing room before searching');
@@ -39,7 +50,7 @@ export class Store {
  queueExpire(){this.db.prepare('DELETE FROM match_queue WHERE state=? AND expires<?').run('Queued',Date.now());}
  queuePair(kind='casual'){
   return this.transaction(()=>{
-   this.queueExpire();const a=this.db.prepare('SELECT * FROM match_queue WHERE state=? AND kind=? ORDER BY created,session_id LIMIT 1').get('Queued',kind);if(!a)return null;
+   this.queueExpire();if(kind==='paid')this.db.prepare(`DELETE FROM match_queue WHERE kind='paid' AND state='Queued' AND NOT EXISTS(SELECT 1 FROM sessions s WHERE s.id=match_queue.session_id AND s.wallet=match_queue.wallet AND s.wallet_expires>? AND s.expires>?)`).run(Date.now(),Date.now());const a=this.db.prepare('SELECT * FROM match_queue WHERE state=? AND kind=? ORDER BY created,session_id LIMIT 1').get('Queued',kind);if(!a)return null;
    const b=this.db.prepare('SELECT * FROM match_queue WHERE state=? AND kind=? AND session_id<>? AND (wallet IS NULL OR wallet<>?) ORDER BY created,session_id LIMIT 1').get('Queued',kind,a.session_id,a.wallet||'');if(!b)return null;
    this.db.prepare('UPDATE match_queue SET state=? WHERE session_id IN (?,?) AND state=?').run('Pairing',a.session_id,b.session_id,'Queued');
    return [a,b];
@@ -50,24 +61,36 @@ export class Store {
  queueClear(sessionId){this.db.prepare('DELETE FROM match_queue WHERE session_id=?').run(sessionId);}
  duel(id){const row=this.db.prepare('SELECT * FROM paid_duels WHERE id=?').get(id);return row?{...row,players:parse(row.players),characters:parse(row.characters),nicknames:parse(row.nicknames),wallets:parse(row.wallets)}:null;}
  createDuel(session,{chog,nickname},peer=null){
-  if(!session.wallet||session.wallet_expires<Date.now())throw Error('Verify your testnet wallet first');
+  if(!session.wallet||session.wallet_expires<Date.now())throw Error('Verify your wallet first');
   if(!ROSTER[chog])throw Error('Choose one of the 12 CHOG');nickname=String(nickname||'CHOG player').trim();if(nickname.length<2||nickname.length>24)throw Error('Nickname must be 2–24 characters');
-  const active=this.db.prepare('SELECT count(*) n FROM paid_duels WHERE state NOT IN (?,?) AND players LIKE ?').get('Complete','Cancelled','%'+session.id+'%').n;
-  if(active>=3)throw Error('Finish or cancel an existing paid duel');
+  this.checkDuelWallet(session.wallet);
+  if(peer){const current=this.db.prepare('SELECT * FROM sessions WHERE id=?').get(peer.session_id);if(!current||current.expires<Date.now()||current.wallet_expires<Date.now()||current.wallet?.toLowerCase()!==peer.wallet?.toLowerCase())throw Error('The rival must verify their wallet again');if(session.wallet.toLowerCase()===peer.wallet.toLowerCase())throw Error('Two distinct player wallets are required');this.checkDuelWallet(peer.wallet);}
   const id=randomUUID(),invite=randomBytes(24).toString('hex');
-  this.db.prepare('INSERT INTO paid_duels(id,host,invite_hash,invite_token,players,characters,nicknames,wallets,state,created) VALUES(?,?,?,?,?,?,?,?,?,?)').run(id,session.id,tokenHash(invite),invite,json([session.id,peer?.session_id||null]),json([chog,peer?.chog||null]),json([nickname,peer?.nickname||null]),json([session.wallet,peer?.wallet||null]),peer?'Creating':'Draft',Date.now());
+  this.transaction(()=>{if(peer)this.admitDuel(id,[session.wallet,peer.wallet]);this.db.prepare('INSERT INTO paid_duels(id,host,invite_hash,invite_token,players,characters,nicknames,wallets,state,created) VALUES(?,?,?,?,?,?,?,?,?,?)').run(id,session.id,tokenHash(invite),invite,json([session.id,peer?.session_id||null]),json([chog,peer?.chog||null]),json([nickname,peer?.nickname||null]),json([session.wallet,peer?.wallet||null]),peer?'Creating':'Draft',Date.now());});
   return this.duel(id);
  }
  joinDuel(id,invite,session,{chog,nickname}){
   return this.transaction(()=>{const duel=this.duel(id);if(!duel)throw Error('Duel not found');if(duel.players.includes(session.id))return duel;
    if(duel.state!=='Draft'||duel.invite_hash!==tokenHash(invite||''))throw Error('Invitation is unavailable');
-   if(!session.wallet||session.wallet_expires<Date.now())throw Error('Verify your testnet wallet first');
+   if(!session.wallet||session.wallet_expires<Date.now())throw Error('Verify your wallet first');
    if(duel.wallets[0].toLowerCase()===session.wallet.toLowerCase())throw Error('Two distinct player wallets are required');
    if(!ROSTER[chog])throw Error('Choose one of the 12 CHOG');nickname=String(nickname||'CHOG player').trim();if(nickname.length<2||nickname.length>24)throw Error('Nickname must be 2–24 characters');
+   const host=this.db.prepare('SELECT * FROM sessions WHERE id=?').get(duel.host);if(!host||host.expires<Date.now()||host.wallet_expires<Date.now()||host.wallet?.toLowerCase()!==duel.wallets[0].toLowerCase())throw Error('The host must verify their wallet again');
+   this.checkDuelWallet(session.wallet);this.admitDuel(id,[...duel.wallets.slice(0,1),session.wallet]);
    duel.players[1]=session.id;duel.characters[1]=chog;duel.nicknames[1]=nickname;duel.wallets[1]=session.wallet;
    this.updateDuel(id,{players:duel.players,characters:duel.characters,nicknames:duel.nicknames,wallets:duel.wallets,state:'Creating'});return this.duel(id);
   });
  }
+ checkDuelWallet(wallet){
+  const active=this.db.prepare(`SELECT count(*) n FROM paid_duels d,json_each(d.wallets) w WHERE d.state NOT IN ('Complete','Cancelled') AND lower(w.value)=?`).get(wallet.toLowerCase()).n;
+  if(active>=3)throw Error('Finish or cancel an existing paid duel for this wallet');
+ }
+ admitDuel(id,wallets){
+  // This ledger survives session changes, cancellations, retries and process restarts.
+  for(const wallet of wallets){const count=this.db.prepare('SELECT count(*) n FROM duel_admissions WHERE wallet=? AND created>?').get(wallet.toLowerCase(),Date.now()-86400000).n;if(count>=10)throw Error('Daily paid duel admission limit reached for this wallet');}
+  for(const wallet of wallets)this.db.prepare('INSERT INTO duel_admissions VALUES(?,?,?)').run(id,wallet.toLowerCase(),Date.now());
+ }
+
  updateDuel(id,patch){const fields=Object.keys(patch).filter(k=>['players','characters','nicknames','wallets','state','locked','match_id','room_id','funded_mask','start_block','cancel_reason'].includes(k));if(!fields.length)return;this.db.prepare(`UPDATE paid_duels SET ${fields.map(k=>k+'=?').join(',')} WHERE id=?`).run(...fields.map(k=>['players','characters','nicknames','wallets'].includes(k)?json(patch[k]):patch[k]),id);}
  duelReport(id,sessionId=null){
   const d=this.duel(id);if(!d)return null;const match=d.match_id?this.db.prepare('SELECT result FROM matches WHERE id=?').get(d.match_id):null;
@@ -94,7 +117,7 @@ export class Store {
  participants(id){return this.db.prepare('SELECT * FROM participants WHERE cup_id=? ORDER BY slot').all(id);}
  matches(id){return this.db.prepare('SELECT * FROM matches WHERE cup_id=? ORDER BY stage').all(id).map(r=>({...r,players:parse(r.players),result:parse(r.result)}));}
  createCup(host,name,mode='practice') {
-  if(!['practice','testnet','local-mock'].includes(mode))throw Error('Unknown Cup mode');
+  if(!['practice','mainnet','local-mock'].includes(mode))throw Error('Unknown Cup mode');
   name=String(name||'Meridian Route Trial').trim();if(name.length<3||name.length>60)throw Error('Cup title must be 3–60 characters');
   const id=randomUUID();
   return this.transaction(()=>{this.db.prepare('INSERT INTO cups(id,host,name,mode,state,created,pool) VALUES(?,?,?,?,?,?,?)').run(id,host.id,name,mode,'Draft',Date.now(),mode==='practice'?'0':'100000000');
@@ -108,7 +131,7 @@ export class Store {
   nickname=String(nickname||'CHOG player').trim();if(nickname.length<2||nickname.length>24||/[\x00-\x1f]/.test(nickname))throw Error('Nickname must be 2–24 characters');
   const slot=this.db.prepare('SELECT * FROM participants WHERE cup_id=? AND invite_hash=?').get(id,tokenHash(invite||''));
   if(!slot||(slot.session_id&&slot.session_id!==session.id))throw Error('Invitation belongs to another participant');
-  if(cup.mode!=='practice'&&(!session.wallet||session.wallet_expires<Date.now()))throw Error('Verify your testnet recipient wallet before check-in');
+  if(cup.mode!=='practice'&&(!session.wallet||session.wallet_expires<Date.now()))throw Error('Verify your recipient wallet before check-in');
   this.db.prepare('UPDATE participants SET session_id=?,nickname=?,chog=?,wallet=?,checked=1,accepted=1 WHERE cup_id=? AND slot=?').run(session.id,nickname,chog,cup.mode==='practice'?null:session.wallet,id,slot.slot);
   return slot.slot;
  }
@@ -133,7 +156,15 @@ export class Store {
   });
  }
  enqueue({id=randomUUID(),cupId,matchId=null,kind,payload}){this.db.prepare('INSERT OR IGNORE INTO outbox(id,cup_id,match_id,kind,payload,state,updated) VALUES(?,?,?,?,?,?,?)').run(id,cupId,matchId,kind,json(payload),'pending',Date.now());return id;}
- outbox(){return this.db.prepare('SELECT * FROM outbox WHERE state IN (?,?) ORDER BY updated LIMIT 20').all('pending','submitted').map(r=>({...r,payload:parse(r.payload)}));}
+ relayUsage(job){
+  const rows=this.db.prepare('SELECT gas_reserved,broadcasts FROM relay_budget WHERE created>? AND (kind=?)=?').all(Date.now()-86400000,'duel-create',job.kind==='duel-create'?1:0);
+  const resource=this.db.prepare('SELECT payload FROM outbox WHERE cup_id=?').all(job.cup_id).map(r=>parse(r.payload));
+  return {dailyGas:rows.reduce((n,r)=>n+BigInt(r.gas_reserved),0n),dailyBroadcasts:rows.reduce((n,r)=>n+r.broadcasts,0),resourceGas:resource.reduce((n,r)=>n+BigInt(r._gasReserved||'0'),0n),resourceBroadcasts:resource.reduce((n,r)=>n+(r._broadcasts||0),0)};
+ }
+ reserveRelay(job,gas=0n){this.db.prepare('INSERT INTO relay_budget VALUES(?,?,?,?,?,?,?)').run(randomUUID(),job.id,job.cup_id,job.kind,Date.now(),gas.toString(),1);}
+
+ checkOutbox(id){this.db.prepare('UPDATE outbox SET checked=? WHERE id=?').run(Date.now(),id);}
+ outbox(dueOnly=true){return this.db.prepare("SELECT * FROM outbox WHERE state IN (?,?) AND (?=0 OR coalesce(json_extract(payload,'$._nextTry'),0)<=?) ORDER BY checked,updated,id LIMIT 20").all('pending','submitted',dueOnly?1:0,Date.now()).map(r=>({...r,payload:parse(r.payload)}));}
  updateOutbox(id,patch){const keys=Object.keys(patch).filter(k=>['state','attempts','tx_hash','tx_nonce','error','payload'].includes(k));this.db.prepare(`UPDATE outbox SET ${keys.map(k=>k+'=?').join(',')},updated=? WHERE id=?`).run(...keys.map(k=>k==='payload'?json(patch[k]):patch[k]),Date.now(),id);}
  updateCup(id,patch){const keys=Object.keys(patch).filter(k=>['state','locked','sponsor','chain_id','chain_cup_id','contract','funding_tx','cancel_reason'].includes(k));this.db.prepare(`UPDATE cups SET ${keys.map(k=>k+'=?').join(',')} WHERE id=?`).run(...keys.map(k=>patch[k]),id);}
  completePractice(id){this.db.prepare('UPDATE cups SET state=? WHERE id=? AND mode=? AND state=?').run('Complete',id,'practice','Active');}

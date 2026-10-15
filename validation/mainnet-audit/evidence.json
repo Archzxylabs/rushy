@@ -1,0 +1,234 @@
+{
+  "evidenceType": "Historical pre-fix audit of commit 2d14701587259e4e72a909bc067e02714b3f59e4; current fixes and checks are documented in docs/fixes-mainnet-2026-10-15.md",
+  "chainBalances": {
+    "checkedAt": "2026-10-15T03:34:28.200Z",
+    "blockNumber": "26029410",
+    "balances": [
+      {
+        "role": "OWNER",
+        "address": "0xd52e8a92937826e9874A0B972de01Ae5FA6D6c79",
+        "nativeUSDC": "0",
+        "tokenUSDC": "0",
+        "hasCode": false
+      },
+      {
+        "role": "RESULT_SIGNER",
+        "address": "0xE3D7014A9DC4B3D1d89ACF6ECFfB713155217990",
+        "nativeUSDC": "0",
+        "tokenUSDC": "0",
+        "hasCode": false
+      },
+      {
+        "role": "RELAY",
+        "address": "0x0950E77E0c108E8442351f9cEBD9695499b5C357",
+        "nativeUSDC": "0",
+        "tokenUSDC": "0",
+        "hasCode": false
+      },
+      {
+        "role": "TREASURY",
+        "address": "0xEA2d8827B331C80649353f6f28525d10bfa44796",
+        "nativeUSDC": "0",
+        "tokenUSDC": "0",
+        "hasCode": false
+      },
+      {
+        "role": "PaidDuelEscrow",
+        "address": "0xA6505430759EabF189b275251F72FDD357B0Abdc",
+        "nativeUSDC": "0",
+        "tokenUSDC": "0",
+        "hasCode": true
+      },
+      {
+        "role": "HouseCupEscrow",
+        "address": "0x38C8093907f6085e7c2Ad22335F3f4DA15466Efe",
+        "nativeUSDC": "0",
+        "tokenUSDC": "0",
+        "hasCode": true
+      }
+    ]
+  },
+  "browser": {
+    "scope": "local server only; harmless script marker; no wallet or mainnet transaction",
+    "xssPayloadLength": 39,
+    "cupNameStoredUnchanged": true,
+    "storedCupXssExecutedInDifferentBrowserSession": true,
+    "victimCanReadSessionTokenViaSameOriginApi": true,
+    "paidEntryDeepLinkShowsFreeRoom": true,
+    "paidModeButtonsReachable": 0,
+    "duelInvitationExplicitlyRejected": true,
+    "errors": []
+  },
+  "backendProbes": {
+    "scope": "isolated in-memory probes with synthetic RPC responses; zero broadcasts",
+    "startupEnabledWithZeroRelayAndPausedContract": true,
+    "startupReads": [
+      "token",
+      "relay",
+      "nextSigner",
+      "decimals"
+    ],
+    "startupChecksRelayGas": false,
+    "startupChecksPaused": false,
+    "mainnetModeReported": "testnet",
+    "revertedUnfundedCreateResetsToPending": true,
+    "twentyFirstDuelEverReconciled": false,
+    "pollVisits": 40,
+    "distinctDuelsPolled": 20,
+    "newJobStarvesBehindTwentyMissingReceipts": true,
+    "newJobState": "pending"
+  },
+  "receiptProbes": {
+    "scope": "synthetic batch receipts decoded using deployed ABI; no RPC or transactions",
+    "cupAWithdrawalMarkedPaidUsingCupBPaidEvent": true,
+    "duelARefundMarkedPaidUsingDuelBPaidEvent": true
+  },
+  "rateLimit": {
+    "scope": "local server only; anonymous session requests",
+    "fixedHeaderLastStatus": 429,
+    "fixedHeaderRateLimited": true,
+    "rotatingInvalidBearerStatuses": [
+      200,
+      200,
+      200
+    ]
+  },
+  "liveSource": [
+    {
+      "path": "online/client.mjs",
+      "liveMatchesReviewedSource": true,
+      "sha256": "388b17d46f040eb1f0d3104a10765595b5381d9cb9c4d7d14737eb4d919bafe0"
+    },
+    {
+      "path": "online/payments.mjs",
+      "liveMatchesReviewedSource": true,
+      "sha256": "1682c9f6bf269cd7c6b25a5c8f611cb196d579676492ff2c2de3fa79ab0c4a63"
+    },
+    {
+      "path": "online/wallet-session.mjs",
+      "liveMatchesReviewedSource": true,
+      "sha256": "a41457bf9279ed5572661ee94f53ec8d1a93b3100c8ed9a13d9ff9c8172e3854"
+    },
+    {
+      "path": "online/build.mjs",
+      "liveMatchesReviewedSource": true,
+      "sha256": "3459c2b240ec6fd48cc311b61bf8ac9e3ea73fcee25284f7debb551dea423419"
+    }
+  ],
+  "checkedAt": "2026-10-15T03:41:13.479132+00:00",
+  "commit": "2d14701587259e4e72a909bc067e02714b3f59e4",
+  "deploymentId": "bf286ea3-2553-4a73-ad32-48f54e6e936b",
+  "liveConfig": {
+    "ruleset": "meridian-abilities-v2",
+    "buildHash": "0x294e45f72b2cf614f02ad120e7d8e005426376d3130daf2ef0e28b4628ada844",
+    "online": true,
+    "settlement": {
+      "enabled": false,
+      "mode": "testnet",
+      "label": "Arc mainnet \u00b7 USDC (real funds)",
+      "chainId": 5042,
+      "contract": null,
+      "token": null,
+      "pool": "100",
+      "split": [
+        70,
+        30
+      ],
+      "reason": "Arc Cup prizes are not configured on this host. Practice Cup and free PvP are available."
+    },
+    "paidDuel": {
+      "enabled": false,
+      "chainId": 5042,
+      "contract": null,
+      "token": null,
+      "entry": "1",
+      "pool": "2",
+      "feeBps": 500,
+      "winnerAward": "1900000",
+      "treasury": null,
+      "label": "Arc mainnet \u00b7 USDC (real funds)",
+      "reason": "Paid USDC duels are unavailable on this host."
+    },
+    "quickMatch": true,
+    "roster": [
+      "yot",
+      "mamio",
+      "benja",
+      "toad",
+      "ping",
+      "novee",
+      "tonashiro",
+      "bigchog",
+      "rogue",
+      "tabsu",
+      "venty",
+      "cookie"
+    ]
+  },
+  "requiredPrivateKeyPresence": {
+    "RESULT_SIGNER_PRIVATE_KEY": false,
+    "RELAY_PRIVATE_KEY": false
+  },
+  "mainnetVerification": {
+    "checkedAt": "2026-10-15T03:33:28.115Z",
+    "chainId": 5042,
+    "blockNumber": "26029292",
+    "status": "DEPLOYMENT_VERIFIED",
+    "tokenDecimals": 6,
+    "contracts": [
+      {
+        "contract": "PaidDuelEscrow",
+        "address": "0xA6505430759EabF189b275251F72FDD357B0Abdc",
+        "transactionHash": "0xcfa1f5a6780cc781213f111aaaaebacee9b812f00e6c255aeae496c90e8021d3",
+        "receiptStatus": "success",
+        "deploymentBlock": "25913480",
+        "feeUSDC": "0.044139322950713542",
+        "creationInputMatches": true,
+        "runtimeMatches": true,
+        "configurationMatches": true,
+        "domainMatches": true
+      },
+      {
+        "contract": "HouseCupEscrow",
+        "address": "0x38C8093907f6085e7c2Ad22335F3f4DA15466Efe",
+        "transactionHash": "0x4398d615a8c37311f5eb8d764ea14669b1f805cdf4de07227a8d78adc3ce0a22",
+        "receiptStatus": "success",
+        "deploymentBlock": "25913485",
+        "feeUSDC": "0.043724182922961433",
+        "creationInputMatches": true,
+        "runtimeMatches": true,
+        "configurationMatches": true,
+        "domainMatches": true
+      }
+    ],
+    "transactionBroadcast": false,
+    "scope": "Read-only deployment/configuration checks; no payment acceptance test or security audit."
+  },
+  "productionDependencyVulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "tests": {
+    "solidity": {
+      "passed": 49,
+      "failed": 0,
+      "fuzzRunsPerFuzzTest": 256
+    },
+    "server": {
+      "passed": 45,
+      "failed": 0,
+      "environment": "localhost Anvil chain 31337 with mock ERC-20"
+    },
+    "clientBuild": "passed",
+    "paymentIntegrationAfterRebuildingClient": {
+      "passed": 2,
+      "failed": 0,
+      "environment": "localhost Anvil chain 31337 with mock ERC-20; rebuilt client hash matches production"
+    }
+  },
+  "mainnetTransactionsBroadcast": 0
+}

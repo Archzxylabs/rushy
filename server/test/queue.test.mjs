@@ -23,7 +23,7 @@ test('queue leases, cancellation and repeated search preserve one FIFO entry',()
 test('paid queue never pairs two sessions controlling the same wallet',()=>{
  const store=new Store(),sessions=Array.from({length:3},()=>store.session(store.newSession().token));
  try{
-  for(let i=0;i<3;i++){sessions[i].wallet='0x'+String(i===2?'22':'11').repeat(20);sessions[i].wallet_expires=Date.now()+60000;store.queueJoin(sessions[i],{chog:'yot',nickname:'Player '+i,kind:'paid'});}
+  for(let i=0;i<3;i++){sessions[i].wallet='0x'+String(i===2?'22':'11').repeat(20);sessions[i].wallet_expires=Date.now()+60000;store.db.prepare('UPDATE sessions SET wallet=?,wallet_expires=? WHERE id=?').run(sessions[i].wallet,sessions[i].wallet_expires,sessions[i].id);store.queueJoin(sessions[i],{chog:'yot',nickname:'Player '+i,kind:'paid'});}
   const pair=store.queuePair('paid');assert.ok(pair);assert.notEqual(pair[0].wallet,pair[1].wallet);assert.equal(store.queuePair('paid'),null);
  }finally{store.close();}
 });

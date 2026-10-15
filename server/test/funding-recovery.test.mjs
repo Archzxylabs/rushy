@@ -7,9 +7,9 @@ test('funding recovery handles a ten-block RPC limit and resumes its persisted s
  const store=new Store(),created=store.newSession(),session=store.session(created.token);
  const wallet='0x'+'12'.repeat(20),contract='0x'+'34'.repeat(20),id='0x'+'56'.repeat(32),hash='0x'+'78'.repeat(32),build='0x'+'90'.repeat(32);
  session.wallet=wallet;session.wallet_expires=Date.now()+60000;
- const cup=store.createCup(session,'Provider limit regression','testnet');
+ const cup=store.createCup(session,'Provider limit regression','mainnet');
  store.beginFunding(cup.id,wallet,5042,contract,100n);
- const ranges=[],chain={store,enabled:true,mode:'testnet',chainId:5042,address:contract,buildHash:build,
+ const ranges=[],chain={store,enabled:true,mode:'mainnet',chainId:5042,address:contract,buildHash:build,
   abi:[{type:'event',name:'CupFunded',inputs:[]}],
   async read(){return {state:1,sponsor:wallet,rulesetHash:build,reserved:100000000n};},
   public:{async getBlockNumber(){return 149n;},async getLogs({fromBlock,toBlock}){

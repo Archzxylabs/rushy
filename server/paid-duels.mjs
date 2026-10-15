@@ -15,29 +15,41 @@ export class PaidDuels {
   Object.assign(this,{chain,store,createRoom,address:env.DUEL_ESCROW_ADDRESS,enabled:false,feeBps:500,treasury:null,busy:false});
   this.reason='Paid USDC duels are unavailable on this host.';this.expectedFee=Number(env.DUEL_FEE_BPS||500);this.expectedTreasury=env.DUEL_TREASURY_ADDRESS||env.CONTRACT_OWNER_ADDRESS;
  }
- async initialize(){
+ async initialize(){await this.verifyContract();await this.refreshReadiness(true);}
+ async verifyContract(){
+  this.verificationAt=Date.now();
   if(!this.chain.enabled||!isAddress(this.address||''))return;
   const file=path.resolve(import.meta.dirname,'../contracts/out/PaidDuelEscrow.sol/PaidDuelEscrow.json');if(!fs.existsSync(file))return;
   this.artifact=JSON.parse(fs.readFileSync(file));this.abi=this.artifact.abi;
   try{
    const [code,token,relay,signer,fee,treasury]=await Promise.all([
     this.chain.public.getBytecode({address:this.address}),...['token','relay','nextSigner','feeBps','treasury'].map(name=>this.read(name))]);
-   if(!verifiedRuntime(code,this.artifact)||!same(token,this.chain.token)||!same(relay,this.chain.relay.address)||!same(signer,this.chain.signer.address)||Number(fee)!==this.expectedFee||(this.expectedTreasury&&!same(treasury,this.expectedTreasury)))throw Error('Duel contract mismatch');
+   if(!verifiedRuntime(code,this.artifact)||!same(token,this.chain.token)||!same(relay,this.chain.contractRelay)||Number(fee)!==this.expectedFee||(this.expectedTreasury&&!same(treasury,this.expectedTreasury)))throw Error('Duel contract mismatch');
    this.feeBps=Number(fee);this.treasury=treasury;this.enabled=true;this.reason=null;
   }catch{this.reason='Paid duel contract or network verification failed. Free modes are available.';}
  }
- info(){return {enabled:this.enabled,chainId:this.chain.chainId,contract:this.enabled?this.address:null,token:this.enabled?this.chain.token:null,entry:'1',pool:'2',feeBps:this.feeBps,winnerAward:(2000000n-2000000n*BigInt(this.feeBps)/10000n).toString(),treasury:this.treasury,label:this.chain.label,reason:this.reason};}
+ async refreshReadiness(force=false){
+  await this.chain.refreshReadiness(force);
+  if(!this.chain.enabled){this.accepting=false;return;}
+  if(!this.enabled&&(force||!this.verificationAt||Date.now()-this.verificationAt>30000))await this.verifyContract();
+  if(!this.enabled)return;
+  if(!this.chain.accepting){this.accepting=false;this.reason=this.chain.reason;}
+  if(!force&&this.readinessAt&&Date.now()-this.readinessAt<5000)return;
+  this.accepting=false;try{const [paused,signer]=await Promise.all([this.read('paused'),this.read('nextSigner')]);this.accepting=!!this.chain.accepting&&!paused&&same(signer,this.chain.signer?.address);this.reason=this.accepting?null:this.chain.reason||(paused?'The duel escrow is paused. Existing claims remain available.':'The duel result signer does not match the configured wallet.');}catch{this.reason='Duel readiness could not be verified. New entries are unavailable.';}finally{this.readinessAt=Date.now();}
+ }
+ async requireAccepting(){await this.refreshReadiness();if(!this.accepting||!this.chain.accepting)throw Error(this.reason||'New paid entries are unavailable');}
+ info(){return {enabled:!!this.accepting&&!!this.chain.accepting,recoveryEnabled:!!this.enabled&&!!this.chain.enabled,chainId:this.chain.chainId,contract:this.enabled?this.address:null,token:this.enabled?this.chain.token:null,entry:'1',pool:'2',feeBps:this.feeBps,winnerAward:(2000000n-2000000n*BigInt(this.feeBps)/10000n).toString(),treasury:this.treasury,label:this.chain.label,reason:this.reason};}
  read(functionName,args=[]){return this.chain.public.readContract({address:this.address,abi:this.abi,functionName,args});}
  async chainTime(){if(this.clockRead&&Date.now()-this.clockRead.at<1000)return this.clockRead.time;const block=await this.chain.public.getBlock();this.clockRead={at:Date.now(),time:Number(block.timestamp)*1000};return this.clockRead.time;}
  events(receipt){return receipt.logs.filter(l=>same(l.address,this.address)).map(l=>{try{return decodeEventLog({abi:this.abi,...l});}catch{return null;}}).filter(Boolean);}
- requireEnabled(){if(!this.enabled)throw Error('Paid USDC duels are unavailable');}
+ requireEnabled(){if(!this.enabled||!this.chain.enabled)throw Error('Paid USDC duels are unavailable');}
  participant(duel,session,{wallet=false}={}){
   const seat=duel.players.indexOf(session.id);if(seat<0)throw Error('Duel participant access required');
   if(wallet&&(!session.wallet||session.wallet_expires<Date.now()||!same(session.wallet,duel.wallets[seat])))throw Error('Verify the wallet assigned to this duel');return seat;
  }
- report(id,sessionId){const d=this.store.duelReport(id,sessionId);if(!d)throw Error('Duel not found');return {...d,terms:this.info(),moneyLabel:this.chain.label+' · no monetary value'};}
- create(session,body,peer=null){this.requireEnabled();const d=this.store.createDuel(session,body,peer);if(peer)this.ensureCreate(d);return this.report(d.id,session.id);}
- join(id,invite,session,body){this.requireEnabled();const d=this.store.joinDuel(id,invite,session,body);if(d.state==='Creating')this.ensureCreate(d);return this.report(id,session.id);}
+ report(id,sessionId){const d=this.store.duelReport(id,sessionId);if(!d)throw Error('Duel not found');return {...d,terms:this.info(),moneyLabel:this.chain.label};}
+ create(session,body,peer=null){if(!this.accepting||!this.chain.accepting)throw Error(this.reason||'New paid entries are unavailable');const d=this.store.createDuel(session,body,peer);if(peer)this.ensureCreate(d);return this.report(d.id,session.id);}
+ join(id,invite,session,body){if(!this.accepting||!this.chain.accepting)throw Error(this.reason||'New paid entries are unavailable');const d=this.store.joinDuel(id,invite,session,body);if(d.state==='Creating')this.ensureCreate(d);return this.report(id,session.id);}
  ensureCreate(duel){this.store.enqueue({id:duel.id+':create',cupId:duel.id,kind:'duel-create',payload:{players:duel.wallets}});}
  progress(duel,wallet){
   this.store.db.prepare('INSERT OR IGNORE INTO duel_funding(duel_id,wallet,start_block,scan_block,updated) VALUES(?,?,?,?,?)').run(duel.id,wallet.toLowerCase(),duel.start_block,duel.start_block,Date.now());
@@ -60,7 +72,7 @@ export class PaidDuels {
  }
  saveDeposit(duel,wallet,receipt){this.store.transaction(()=>{this.store.db.prepare('UPDATE duel_funding SET deposit_tx=?,updated=? WHERE duel_id=? AND wallet=?').run(receipt.transactionHash,Date.now(),duel.id,wallet.toLowerCase());this.store.db.prepare('INSERT OR IGNORE INTO chain_receipts VALUES(?,?,?,?)').run(receipt.transactionHash,duel.id,'duel-entry',JSON.stringify(normalize(receipt)));});}
  async fundingStatus(duel,session){
-  this.requireEnabled();const seat=this.participant(duel,session,{wallet:true});if(duel.state==='Draft'||duel.state==='Creating')return {phase:'preparing',canFund:false,report:this.report(duel.id,session.id)};
+  await this.refreshReadiness();this.requireEnabled();const seat=this.participant(duel,session,{wallet:true});if(duel.state==='Draft'||duel.state==='Creating')return {phase:'preparing',canFund:false,report:this.report(duel.id,session.id)};
   const state=await this.read('getDuel',[cupHash(duel.id)]);this.store.updateDuel(duel.id,{funded_mask:Number(state.fundedMask)});
   const p=this.progress(duel,session.wallet),onchainFunded=!!(Number(state.fundedMask)&(1<<seat));let depositHash=p.deposit_tx,depositReceipt=null;
   if(depositHash){try{depositReceipt=await this.chain.public.getTransactionReceipt({hash:depositHash});}catch{}}
@@ -68,9 +80,9 @@ export class PaidDuels {
   let phase=onchainFunded?'confirmed':state.state!==1?'closed':depositHash&&!depositReceipt?'pending':depositReceipt?.status==='success'?'unknown':'ready';
   const allowance=onchainFunded?1000000n:await this.chain.public.readContract({address:this.chain.token,abi:tokenAbi,functionName:'allowance',args:[session.wallet,this.address]});
   const approvalNeeded=allowance<1000000n;if(phase==='ready')phase=approvalNeeded?'approval-ready':'deposit-ready';else if(phase==='pending')phase='deposit-pending';
-  return {phase,onchainFunded,alreadyFunded:onchainFunded,canFund:['approval-ready','deposit-ready'].includes(phase)&&duel.state==='Funding'&&Number(state.state)===1&&Number(state.fundingDeadline)*1000>=await this.chainTime(),approvalNeeded,approvalTx:p.approval_tx,depositTx:depositHash,depositFailed:depositReceipt?.status==='reverted',report:this.report(duel.id,session.id)};
+  return {phase,onchainFunded,alreadyFunded:onchainFunded,canFund:!!this.accepting&&!!this.chain.accepting&&['approval-ready','deposit-ready'].includes(phase)&&duel.state==='Funding'&&Number(state.state)===1&&Number(state.fundingDeadline)*1000>=await this.chainTime(),approvalNeeded,approvalTx:p.approval_tx,depositTx:depositHash,depositFailed:depositReceipt?.status==='reverted',report:this.report(duel.id,session.id)};
  }
- async funding(duel,session){const status=await this.fundingStatus(duel,session);if(status.onchainFunded)return {...status,status,steps:[]};if(!status.canFund)throw Error('Check the pending entry or wait for the duel escrow');return {...status,chainId:this.chain.chainId,amount:'1000000',contract:this.address,token:this.chain.token,steps:[...(status.approvalNeeded?[{phase:'approval',transaction:{to:this.chain.token,data:encodeFunctionData({abi:tokenAbi,functionName:'approve',args:[this.address,1000000n]}),value:'0x0'}}]:[]),{phase:'deposit',transaction:{to:this.address,data:encodeFunctionData({abi:this.abi,functionName:'fundDuel',args:[cupHash(duel.id)]}),value:'0x0'}}]};}
+ async funding(duel,session){await this.requireAccepting();const status=await this.fundingStatus(duel,session);if(status.onchainFunded)return {...status,status,steps:[]};if(!status.canFund)throw Error('Check the pending entry or wait for the duel escrow');return {...status,chainId:this.chain.chainId,amount:'1000000',contract:this.address,token:this.chain.token,steps:[...(status.approvalNeeded?[{phase:'approval',transaction:{to:this.chain.token,data:encodeFunctionData({abi:tokenAbi,functionName:'approve',args:[this.address,1000000n]}),value:'0x0'}}]:[]),{phase:'deposit',transaction:{to:this.address,data:encodeFunctionData({abi:this.abi,functionName:'fundDuel',args:[cupHash(duel.id)]}),value:'0x0'}}]};}
  async confirmFunding(duel,session,hash){this.requireEnabled();this.participant(duel,session,{wallet:true});if(!hashPattern.test(hash||''))throw Error('Invalid entry hash');this.progress(duel,session.wallet);const receipt=await this.chain.public.getTransactionReceipt({hash});this.verifyDeposit(receipt,duel,session.wallet);this.saveDeposit(duel,session.wallet,receipt);await this.reconcile(duel);return this.report(duel.id,session.id);}
  cancel(duel,session){this.participant(duel,session);if(duel.state==='Draft'){this.store.updateDuel(duel.id,{state:'Cancelled',cancel_reason:'cancelled_before_peer'});return;}if(!['Creating','Funding','Cancelling'].includes(duel.state))throw Error('A locked duel can only finish or expire');this.requireEnabled();const activation=this.store.db.prepare('SELECT * FROM outbox WHERE id=?').get(duel.id+':activate');if(activation?.tx_hash)throw Error('Both entries are confirmed and the duel is locking. Open the match.');this.store.transaction(()=>{if(activation)this.store.updateOutbox(activation.id,{state:'cancelled'});this.store.updateDuel(duel.id,{state:'Cancelling'});this.store.enqueue({id:duel.id+':cancel',cupId:duel.id,kind:'duel-cancel',payload:{}});});}
  enqueueResult(duelId,matchId,result){return {id:matchId+':result',cupId:duelId,matchId,kind:'duel-result',payload:{result}};}
@@ -90,9 +102,10 @@ export class PaidDuels {
   }
  }
  async poll(){
-  if(!this.enabled||this.busy)return;this.busy=true;
-  try{for(const row of this.store.db.prepare('SELECT id FROM paid_duels WHERE state IN (?,?,?,?) ORDER BY created LIMIT 20').all('Creating','Funding','Active','Settling')){
-   const d=this.store.duel(row.id);if(d.state==='Creating')this.ensureCreate(d);else await this.reconcile(d);await this.advance(d.id);
+  if(this.busy)return;this.busy=true;
+  try{await this.refreshReadiness();if(!this.enabled||!this.chain.enabled)return;for(const row of this.store.db.prepare('SELECT id FROM paid_duels WHERE state IN (?,?,?,?,?) ORDER BY checked,created,id LIMIT 20').all('Creating','Funding','Active','Settling','Cancelling')){
+   this.store.db.prepare('UPDATE paid_duels SET checked=? WHERE id=?').run(Date.now(),row.id);
+   try{const d=this.store.duel(row.id);if(d.state==='Creating')this.ensureCreate(d);else await this.reconcile(d);await this.advance(d.id);}catch{/* Keep other resources progressing after an isolated RPC failure. */}
   }}finally{this.busy=false;}
  }
  async prepare(job){
@@ -112,13 +125,14 @@ export class PaidDuels {
  }
  awardJobs(id,events){const awards=new Map();for(const e of events.filter(e=>e.eventName==='CreditAwarded')){const key=e.args.recipient.toLowerCase(),a=awards.get(key)||{recipient:e.args.recipient,amount:0n};a.amount+=e.args.amount;awards.set(key,a);}for(const [key,a] of awards)this.store.enqueue({id:id+':withdraw:'+key,cupId:id,kind:'duel-withdraw',payload:{recipient:a.recipient,amount:a.amount.toString()}});}
  async confirm(job,receipt){
-  const events=this.events(receipt),id=cupHash(job.cup_id);if(!events.some(e=>e.args.duelId===id))throw Error('Receipt does not contain this duel');const state=await this.read('getDuel',[id]);
+  if(receipt.status!=='success')throw Error('Transaction was not successful');
+  const id=cupHash(job.cup_id),events=this.events(receipt).filter(e=>e.args.duelId===id);if(!events.length)throw Error('Receipt does not contain this duel');const state=await this.read('getDuel',[id]);
   if(job.kind==='duel-create'){const e=events.find(e=>e.eventName==='DuelCreated');if(!e||e.args.rulesetHash!==BUILD_HASH||e.args.players.some((a,i)=>!same(a,job.payload.players[i])))throw Error('Created duel terms mismatch');this.store.updateDuel(job.cup_id,{state:this.store.duel(job.cup_id).state==='Cancelling'?'Cancelling':'Funding',start_block:receipt.blockNumber.toString()});}
   else if(job.kind==='duel-activate'){if(!events.some(e=>e.eventName==='DuelActivated')||state.state!==2||state.fundedMask!==3)throw Error('Duel activation mismatch');this.store.updateDuel(job.cup_id,{state:'Active',locked:Number(state.lockedAt)*1000,funded_mask:3});}
   else if(job.kind==='duel-result'){const e=events.find(e=>e.eventName==='DuelSettled'),r=job.payload.signed.message;if(!e||!same(e.args.winner,r.winnerRecipient)||e.args.outcomeType!==r.outcomeType||e.args.replayHash!==r.replayHash||![3,4].includes(Number(state.state)))throw Error('Duel result mismatch');this.store.updateDuel(job.cup_id,{state:state.state===3?'Complete':'Cancelled',cancel_reason:state.state===4?'verified_void':null});this.awardJobs(job.cup_id,events);}
   else if(job.kind==='duel-cancel'||job.kind==='duel-refund'){if(state.state!==4||!events.some(e=>e.eventName==='DuelCancelled'))throw Error('Duel cancellation mismatch');this.store.updateDuel(job.cup_id,{state:'Cancelled',cancel_reason:job.kind==='duel-refund'?'expired':'cancelled_before_start'});this.awardJobs(job.cup_id,events);}
   else if(job.kind==='duel-withdraw'){
-   const e=events.find(e=>e.eventName==='Paid');if(!e||!same(e.args.recipient,job.payload.recipient)||e.args.amount!==BigInt(job.payload.amount)||!same(e.args.token,this.chain.token))throw Error('Duel payout mismatch');
+   const e=events.find(e=>e.eventName==='Paid'&&same(e.args.recipient,job.payload.recipient)&&e.args.amount===BigInt(job.payload.amount)&&same(e.args.token,this.chain.token));if(!e)throw Error('Duel payout mismatch');
    const transferred=receipt.logs.some(log=>{if(!same(log.address,this.chain.token))return false;try{const event=decodeEventLog({abi:tokenAbi,...log});return event.eventName==='Transfer'&&same(event.args.from,this.address)&&same(event.args.to,job.payload.recipient)&&event.args.value===BigInt(job.payload.amount);}catch{return false;}});if(!transferred)throw Error('Duel payout transfer was not verified');
   }else throw Error('Unknown duel confirmation');
   this.store.transaction(()=>{this.store.db.prepare('INSERT OR IGNORE INTO chain_receipts VALUES(?,?,?,?)').run(receipt.transactionHash,job.cup_id,job.kind,JSON.stringify(normalize(receipt)));this.store.updateOutbox(job.id,{state:job.kind==='duel-withdraw'?'paid':'confirmed',tx_hash:receipt.transactionHash,error:null});});
