@@ -17,13 +17,14 @@ untuk perbaikan ini. Kontrak dan domain EIP-712 tetap memakai deployment lama.
 
 Tambahan: saat koneksi putus sesudah broadcast, job tetap `submitted` dengan
 signed bytes, nonce dan hash yang sama. Server melanjutkan pemeriksaan receipt
-sebelum mengklaim payout berhasil. Retry tidak membuat transaksi pengganti
+sebelum mengklaim payout berhasil. Konfirmasi klaim langsung juga memerlukan
+network yang telah lolos verifikasi. Retry tidak membuat transaksi pengganti
 atau menghapus biaya yang sudah dicatat.
 
 ## Validasi
 
 - `npm --prefix server run build:client`: berhasil; build hash browser/server cocok.
-- `npm --prefix server test`: **56 lulus, 0 gagal**, termasuk 11 regresi mainnet.
+- `npm --prefix server test`: **57 lulus, 0 gagal**, termasuk 12 regresi mainnet.
 - `forge test --root contracts`: **49 lulus, 0 gagal**, termasuk fuzz tests.
 - `npm --prefix server audit --omit=dev`: **0 kerentanan dependency produksi**.
 - Image Docker produksi berhasil dibangun dan dijalankan dengan artifact

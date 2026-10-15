@@ -135,3 +135,12 @@ test('an uncertain broadcast keeps its exact signed transaction in submitted sta
   job.payload._nextTry=0;store.updateOutbox(job.id,{payload:job.payload});c.public.getTransactionReceipt=async()=>({status:'success',transactionHash:job.tx_hash,logs:[]});let recovered=false;c.confirm=async()=>{recovered=true;};await c.poll();assert.equal(recovered,true);
  }finally{store.close();}
 });
+
+
+test('direct claim and cancellation confirmations cannot bypass a failed network verification',async()=>{
+ const store=new Store();try{
+  const chain={enabled:false},d=new PaidDuels({chain,store,createRoom:async()=>{},env:{}});d.enabled=true;
+  await assert.rejects(d.confirmClaim({}, {}, '0x'+'11'.repeat(32)),/unavailable/);
+  const c=new Chain(store,{});await assert.rejects(c.confirmCancellation({}, '0x'+'11'.repeat(32)),/network is verified/);
+ }finally{store.close();}
+});

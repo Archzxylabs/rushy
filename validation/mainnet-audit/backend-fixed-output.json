@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-15T04:00:12.746Z",
+  "checkedAt": "2026-10-15T04:06:39.170Z",
   "scope": "isolated fixtures and localhost HTTP; no mainnet writes",
   "passed": true,
-  "tests": 11
+  "tests": 12
 }
