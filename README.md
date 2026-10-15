@@ -27,6 +27,10 @@ Open `http://localhost:5174/` for the landing page or `http://localhost:5174/pla
 
 The mobile shell at `mobile.html` rotates the landscape game for portrait phones and provides touch controls.
 
+For hosting the game and multiplayer backend together, see the
+[Railway deployment guide](docs/deploy-railway.md). The root Dockerfile builds
+the client and starts the Node server; attach a persistent volume for SQLite.
+
 Skill 1 and Skill 2 show a short fighter and move header when the cast actually starts, for either side of a local or online match. Ultimates use a full-width illustrated cut-in. All 36 Meridian ability names, hit patterns, cooldowns, and generated VFX live in the shared Meridian ability rules and assets. The server remains authoritative for online hits.
 
 ## Roster and places
