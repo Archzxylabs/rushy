@@ -1,0 +1,762 @@
+{
+  "results": [
+    {
+      "started": true,
+      "initialCooldown": 4.2,
+      "damage": 18,
+      "ended": true,
+      "remaining": 1.4499999999999997,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "aster",
+      "slot": "skill1",
+      "gap": 120,
+      "name": "SIGNAL ANCHOR",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 6.4,
+      "damage": 24,
+      "ended": true,
+      "remaining": 3.6499999999998827,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "aster",
+      "slot": "skill2",
+      "gap": 180,
+      "name": "LANE SHIFT",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 19,
+      "damage": 48,
+      "ended": true,
+      "remaining": 16.35000000000015,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "aster",
+      "slot": "ultimate",
+      "gap": 120,
+      "name": "PRIORITY GRID",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 3.8,
+      "damage": 17,
+      "ended": true,
+      "remaining": 1.0500000000000096,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "moro",
+      "slot": "skill1",
+      "gap": 85,
+      "name": "DRIFT SPARK",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 5.8,
+      "damage": 23,
+      "ended": true,
+      "remaining": 3.049999999999914,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "moro",
+      "slot": "skill2",
+      "gap": 120,
+      "name": "GRIND VAULT",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 18,
+      "damage": 48,
+      "ended": true,
+      "remaining": 15.35000000000015,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "moro",
+      "slot": "ultimate",
+      "gap": 120,
+      "name": "REDLINE LAP",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 4.6,
+      "damage": 21,
+      "ended": true,
+      "remaining": 1.9499999999999775,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 3
+      },
+      "fighter": "beacon",
+      "slot": "skill1",
+      "gap": 85,
+      "name": "RALLY STANDARD",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 6.2,
+      "damage": 13,
+      "ended": true,
+      "remaining": 3.449999999999893,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "beacon",
+      "slot": "skill2",
+      "gap": 85,
+      "name": "CALL RESPONSE",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 20,
+      "damage": 48,
+      "ended": true,
+      "remaining": 17.35000000000015,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "beacon",
+      "slot": "ultimate",
+      "gap": 120,
+      "name": "STANDING OVATION",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 4.1,
+      "damage": 19,
+      "ended": true,
+      "remaining": 1.3500000000000045,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "loom",
+      "slot": "skill1",
+      "gap": 85,
+      "name": "PRISM POST",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 6.6,
+      "damage": 18,
+      "ended": true,
+      "remaining": 3.8499999999998713,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "loom",
+      "slot": "skill2",
+      "gap": 85,
+      "name": "REFRACT WALL",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 21,
+      "damage": 48,
+      "ended": true,
+      "remaining": 18.35000000000015,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "loom",
+      "slot": "ultimate",
+      "gap": 120,
+      "name": "GLASS MAZE",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 3.5,
+      "damage": 16,
+      "ended": true,
+      "remaining": 0.7500000000000098,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "vesper",
+      "slot": "skill1",
+      "gap": 85,
+      "name": "THREAD NEEDLE",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 6.1,
+      "damage": 23,
+      "ended": true,
+      "remaining": 3.349999999999898,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "vesper",
+      "slot": "skill2",
+      "gap": 85,
+      "name": "BACKSTITCH",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 19,
+      "damage": 48,
+      "ended": true,
+      "remaining": 16.35000000000015,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "vesper",
+      "slot": "ultimate",
+      "gap": 120,
+      "name": "NIGHT WEAVE",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 4,
+      "damage": 21,
+      "ended": true,
+      "remaining": 1.3000000000000096,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "kite",
+      "slot": "skill1",
+      "gap": 85,
+      "name": "ROTOR TAG",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 5.8,
+      "damage": 24,
+      "ended": true,
+      "remaining": 3.049999999999914,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "kite",
+      "slot": "skill2",
+      "gap": 85,
+      "name": "CROSSWIND",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 20,
+      "damage": 48,
+      "ended": true,
+      "remaining": 17.35000000000015,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "kite",
+      "slot": "ultimate",
+      "gap": 120,
+      "name": "AIR TRAFFIC",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 4.1,
+      "damage": 20,
+      "ended": true,
+      "remaining": 1.3500000000000045,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "iona",
+      "slot": "skill1",
+      "gap": 180,
+      "name": "GLACIAL PIN",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 6.3,
+      "damage": 25,
+      "ended": true,
+      "remaining": 3.5499999999998875,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "iona",
+      "slot": "skill2",
+      "gap": 180,
+      "name": "SLED CHARGE",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 20,
+      "damage": 48,
+      "ended": true,
+      "remaining": 17.35000000000015,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "iona",
+      "slot": "ultimate",
+      "gap": 120,
+      "name": "WHITEOUT ROUTE",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 4.3,
+      "damage": 15,
+      "ended": true,
+      "remaining": 1.549999999999994,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "brink",
+      "slot": "skill1",
+      "gap": 85,
+      "name": "CARGO HOOK",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 6.5,
+      "damage": 26,
+      "ended": true,
+      "remaining": 3.749999999999877,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "brink",
+      "slot": "skill2",
+      "gap": 85,
+      "name": "PILE DRIVER",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 21,
+      "damage": 48,
+      "ended": true,
+      "remaining": 18.29166666666682,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "brink",
+      "slot": "ultimate",
+      "gap": 120,
+      "name": "CRANE DROP",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 3.9,
+      "damage": 17,
+      "ended": true,
+      "remaining": 1.1500000000000097,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "nix",
+      "slot": "skill1",
+      "gap": 85,
+      "name": "COLOR BOMB",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 6.2,
+      "damage": 22,
+      "ended": true,
+      "remaining": 3.449999999999893,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "nix",
+      "slot": "skill2",
+      "gap": 85,
+      "name": "MASK SWAP",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 19,
+      "damage": 48,
+      "ended": true,
+      "remaining": 16.35000000000015,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "nix",
+      "slot": "ultimate",
+      "gap": 120,
+      "name": "MURAL FLOOD",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 4.3,
+      "damage": 20,
+      "ended": true,
+      "remaining": 1.549999999999994,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "torque",
+      "slot": "skill1",
+      "gap": 120,
+      "name": "MAGNET MINE",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 6.1,
+      "damage": 23,
+      "ended": true,
+      "remaining": 3.349999999999898,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "torque",
+      "slot": "skill2",
+      "gap": 85,
+      "name": "PRESSURE VENT",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 20,
+      "damage": 48,
+      "ended": true,
+      "remaining": 17.35000000000015,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "torque",
+      "slot": "ultimate",
+      "gap": 120,
+      "name": "FOUNDRY OVERLOAD",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 3.5,
+      "damage": 23,
+      "ended": true,
+      "remaining": 0.8000000000000096,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "vela",
+      "slot": "skill1",
+      "gap": 85,
+      "name": "RICOCHET DISC",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 5.9,
+      "damage": 22,
+      "ended": true,
+      "remaining": 3.1499999999999093,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          350,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "vela",
+      "slot": "skill2",
+      "gap": 240,
+      "name": "CHECKPOINT BLINK",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 18,
+      "damage": 48,
+      "ended": true,
+      "remaining": 15.35000000000015,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "vela",
+      "slot": "ultimate",
+      "gap": 120,
+      "name": "ACROSS TOWN",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 4.2,
+      "damage": 13,
+      "ended": true,
+      "remaining": 1.4499999999999997,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "orbit",
+      "slot": "skill1",
+      "gap": 85,
+      "name": "GRAVITY TAG",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 6.5,
+      "damage": 21,
+      "ended": true,
+      "remaining": 3.749999999999877,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 0
+      },
+      "fighter": "orbit",
+      "slot": "skill2",
+      "gap": 85,
+      "name": "ORBIT PIVOT",
+      "pass": true
+    },
+    {
+      "started": true,
+      "initialCooldown": 21,
+      "damage": 48,
+      "ended": true,
+      "remaining": 18.391666666666815,
+      "effects": {
+        "hazards": [],
+        "ultimates": [],
+        "markers": [
+          null,
+          null
+        ],
+        "serial": 1
+      },
+      "fighter": "orbit",
+      "slot": "ultimate",
+      "gap": 120,
+      "name": "SINGULARITY",
+      "pass": true
+    }
+  ],
+  "pageErrors": [],
+  "failures": []
+}

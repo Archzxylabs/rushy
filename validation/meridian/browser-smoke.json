@@ -1,0 +1,607 @@
+{
+  "fighters": [
+    {
+      "id": "aster",
+      "prepared": true,
+      "started": true,
+      "stageLoaded": true,
+      "selected": "yot",
+      "manifestLoaded": true,
+      "portrait": "assets/meridian/fighters/aster/ui/portrait.webp",
+      "moves": [
+        {
+          "name": "attack",
+          "started": true,
+          "action": "attack1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 6,
+          "projectiles": 0
+        },
+        {
+          "name": "skill1",
+          "started": true,
+          "action": "skill1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "skill2",
+          "started": true,
+          "action": "skill2",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "ultimate",
+          "started": true,
+          "action": "ultimate",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 16,
+          "projectiles": 0
+        }
+      ]
+    },
+    {
+      "id": "moro",
+      "prepared": true,
+      "started": true,
+      "stageLoaded": true,
+      "selected": "mamio",
+      "manifestLoaded": true,
+      "portrait": "assets/meridian/fighters/moro/ui/portrait-base.webp",
+      "moves": [
+        {
+          "name": "attack",
+          "started": true,
+          "action": "attack1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 6,
+          "projectiles": 0
+        },
+        {
+          "name": "skill1",
+          "started": true,
+          "action": "skill1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "skill2",
+          "started": true,
+          "action": "skill2",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "ultimate",
+          "started": true,
+          "action": "ultimate",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 16,
+          "projectiles": 0
+        }
+      ]
+    },
+    {
+      "id": "beacon",
+      "prepared": true,
+      "started": true,
+      "stageLoaded": true,
+      "selected": "benja",
+      "manifestLoaded": true,
+      "portrait": "assets/meridian/fighters/beacon/ui/portrait.webp",
+      "moves": [
+        {
+          "name": "attack",
+          "started": true,
+          "action": "attack1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 6,
+          "projectiles": 0
+        },
+        {
+          "name": "skill1",
+          "started": true,
+          "action": "skill1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "skill2",
+          "started": true,
+          "action": "skill2",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "ultimate",
+          "started": true,
+          "action": "ultimate",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 32,
+          "projectiles": 0
+        }
+      ]
+    },
+    {
+      "id": "loom",
+      "prepared": true,
+      "started": true,
+      "stageLoaded": true,
+      "selected": "toad",
+      "manifestLoaded": true,
+      "portrait": "assets/meridian/fighters/loom/ui/portrait.webp",
+      "moves": [
+        {
+          "name": "attack",
+          "started": true,
+          "action": "attack1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 6,
+          "projectiles": 0
+        },
+        {
+          "name": "skill1",
+          "started": true,
+          "action": "skill1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "skill2",
+          "started": true,
+          "action": "skill2",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "ultimate",
+          "started": true,
+          "action": "ultimate",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 16,
+          "projectiles": 0
+        }
+      ]
+    },
+    {
+      "id": "vesper",
+      "prepared": true,
+      "started": true,
+      "stageLoaded": true,
+      "selected": "ping",
+      "manifestLoaded": true,
+      "portrait": "assets/meridian/fighters/vesper/ui/portrait.webp",
+      "moves": [
+        {
+          "name": "attack",
+          "started": true,
+          "action": "attack1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 6,
+          "projectiles": 0
+        },
+        {
+          "name": "skill1",
+          "started": true,
+          "action": "skill1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 16,
+          "projectiles": 0
+        },
+        {
+          "name": "skill2",
+          "started": true,
+          "action": "skill2",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "ultimate",
+          "started": true,
+          "action": "ultimate",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 32,
+          "projectiles": 0
+        }
+      ]
+    },
+    {
+      "id": "kite",
+      "prepared": true,
+      "started": true,
+      "stageLoaded": true,
+      "selected": "novee",
+      "manifestLoaded": true,
+      "portrait": "assets/meridian/fighters/kite/ui/portrait.webp",
+      "moves": [
+        {
+          "name": "attack",
+          "started": true,
+          "action": "attack1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 6,
+          "projectiles": 0
+        },
+        {
+          "name": "skill1",
+          "started": true,
+          "action": "skill1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 21,
+          "projectiles": 0
+        },
+        {
+          "name": "skill2",
+          "started": true,
+          "action": "skill2",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "ultimate",
+          "started": true,
+          "action": "ultimate",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 16,
+          "projectiles": 0
+        }
+      ]
+    },
+    {
+      "id": "iona",
+      "prepared": true,
+      "started": true,
+      "stageLoaded": true,
+      "selected": "tonashiro",
+      "manifestLoaded": true,
+      "portrait": "assets/meridian/fighters/iona/ui/portrait.webp",
+      "moves": [
+        {
+          "name": "attack",
+          "started": true,
+          "action": "attack1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 6,
+          "projectiles": 0
+        },
+        {
+          "name": "skill1",
+          "started": true,
+          "action": "skill1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "skill2",
+          "started": true,
+          "action": "skill2",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "ultimate",
+          "started": true,
+          "action": "ultimate",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 16,
+          "projectiles": 0
+        }
+      ]
+    },
+    {
+      "id": "brink",
+      "prepared": true,
+      "started": true,
+      "stageLoaded": true,
+      "selected": "bigchog",
+      "manifestLoaded": true,
+      "portrait": "assets/meridian/fighters/brink/ui/portrait.webp",
+      "moves": [
+        {
+          "name": "attack",
+          "started": true,
+          "action": "attack1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 6,
+          "projectiles": 0
+        },
+        {
+          "name": "skill1",
+          "started": true,
+          "action": "skill1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 15,
+          "projectiles": 0
+        },
+        {
+          "name": "skill2",
+          "started": true,
+          "action": "skill2",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "ultimate",
+          "started": true,
+          "action": "ultimate",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 47,
+          "projectiles": 0
+        }
+      ]
+    },
+    {
+      "id": "nix",
+      "prepared": true,
+      "started": true,
+      "stageLoaded": true,
+      "selected": "rogue",
+      "manifestLoaded": true,
+      "portrait": "assets/meridian/fighters/nix/ui/portrait.webp",
+      "moves": [
+        {
+          "name": "attack",
+          "started": true,
+          "action": "attack1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 6,
+          "projectiles": 0
+        },
+        {
+          "name": "skill1",
+          "started": true,
+          "action": "skill1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 17,
+          "projectiles": 0
+        },
+        {
+          "name": "skill2",
+          "started": true,
+          "action": "skill2",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "ultimate",
+          "started": true,
+          "action": "ultimate",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 16,
+          "projectiles": 0
+        }
+      ]
+    },
+    {
+      "id": "torque",
+      "prepared": true,
+      "started": true,
+      "stageLoaded": true,
+      "selected": "tabsu",
+      "manifestLoaded": true,
+      "portrait": "assets/meridian/fighters/torque/ui/portrait.webp",
+      "moves": [
+        {
+          "name": "attack",
+          "started": true,
+          "action": "attack1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 6,
+          "projectiles": 0
+        },
+        {
+          "name": "skill1",
+          "started": true,
+          "action": "skill1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "skill2",
+          "started": true,
+          "action": "skill2",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "ultimate",
+          "started": true,
+          "action": "ultimate",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 16,
+          "projectiles": 0
+        }
+      ]
+    },
+    {
+      "id": "vela",
+      "prepared": true,
+      "started": true,
+      "stageLoaded": true,
+      "selected": "venty",
+      "manifestLoaded": true,
+      "portrait": "assets/meridian/fighters/vela/ui/portrait.webp",
+      "moves": [
+        {
+          "name": "attack",
+          "started": true,
+          "action": "attack1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 6,
+          "projectiles": 0
+        },
+        {
+          "name": "skill1",
+          "started": true,
+          "action": "skill1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 15,
+          "projectiles": 0
+        },
+        {
+          "name": "skill2",
+          "started": true,
+          "action": "skill2",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "ultimate",
+          "started": true,
+          "action": "ultimate",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 48,
+          "projectiles": 0
+        }
+      ]
+    },
+    {
+      "id": "orbit",
+      "prepared": true,
+      "started": true,
+      "stageLoaded": true,
+      "selected": "cookie",
+      "manifestLoaded": true,
+      "portrait": "assets/meridian/fighters/orbit/ui/portrait.webp",
+      "moves": [
+        {
+          "name": "attack",
+          "started": true,
+          "action": "attack1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 6,
+          "projectiles": 0
+        },
+        {
+          "name": "skill1",
+          "started": true,
+          "action": "skill1",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 13,
+          "projectiles": 0
+        },
+        {
+          "name": "skill2",
+          "started": true,
+          "action": "skill2",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 0,
+          "projectiles": 0
+        },
+        {
+          "name": "ultimate",
+          "started": true,
+          "action": "ultimate",
+          "endAction": null,
+          "health": 200,
+          "dummyDamage": 48,
+          "projectiles": 0
+        }
+      ]
+    }
+  ],
+  "arenas": [
+    {
+      "stage": "rayj-house",
+      "name": "Halo Station",
+      "started": true,
+      "loaded": true,
+      "stageId": "rayj-house"
+    },
+    {
+      "stage": "cwo-alley",
+      "name": "Tide Docks",
+      "started": true,
+      "loaded": true,
+      "stageId": "cwo-alley"
+    },
+    {
+      "stage": "house-cup",
+      "name": "Glass Orchard",
+      "started": true,
+      "loaded": true,
+      "stageId": "house-cup"
+    },
+    {
+      "stage": "neon-street",
+      "name": "Foundry Nine",
+      "started": true,
+      "loaded": true,
+      "stageId": "neon-street"
+    },
+    {
+      "stage": "cwo-rally",
+      "name": "Night Bazaar",
+      "started": true,
+      "loaded": true,
+      "stageId": "cwo-rally"
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": []
+}

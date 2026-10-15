@@ -1,0 +1,257 @@
+{
+  "fighters": [
+    {
+      "id": "aster",
+      "started": true,
+      "name": "skill1",
+      "pose": {
+        "state": "skill1",
+        "frame": 2,
+        "phase": "grounded",
+        "rotation": 0,
+        "pivot": null,
+        "worldPivot": null,
+        "scale": 1
+      },
+      "damage": 0,
+      "projectiles": 1,
+      "effects": [
+        {
+          "type": "muzzle",
+          "x": 388,
+          "y": 551
+        }
+      ]
+    },
+    {
+      "id": "moro",
+      "started": true,
+      "name": "skill1",
+      "pose": {
+        "state": "skill1",
+        "frame": 2,
+        "phase": "grounded",
+        "rotation": 0,
+        "pivot": null,
+        "worldPivot": null,
+        "scale": 1
+      },
+      "damage": 0,
+      "projectiles": 1,
+      "effects": [
+        {
+          "type": "fenr-fx",
+          "x": 415,
+          "y": 479
+        }
+      ]
+    },
+    {
+      "id": "beacon",
+      "started": true,
+      "name": "skill1",
+      "pose": {
+        "state": "skill1",
+        "frame": 2,
+        "phase": "grounded",
+        "rotation": 0,
+        "pivot": null,
+        "worldPivot": null,
+        "scale": 1
+      },
+      "damage": 0,
+      "projectiles": 1,
+      "effects": []
+    },
+    {
+      "id": "loom",
+      "started": true,
+      "name": "skill1",
+      "pose": {
+        "state": "skill1",
+        "frame": 2,
+        "phase": "grounded",
+        "rotation": 0,
+        "pivot": null,
+        "worldPivot": null,
+        "scale": 1
+      },
+      "damage": 0,
+      "projectiles": 1,
+      "effects": []
+    },
+    {
+      "id": "vesper",
+      "started": true,
+      "name": "skill1",
+      "pose": {
+        "state": "skill1",
+        "frame": 2,
+        "phase": "grounded",
+        "rotation": 0,
+        "pivot": null,
+        "worldPivot": null,
+        "scale": 1
+      },
+      "damage": 0,
+      "projectiles": 1,
+      "effects": []
+    },
+    {
+      "id": "kite",
+      "started": true,
+      "name": "skill1",
+      "pose": {
+        "state": "skill1",
+        "frame": 2,
+        "phase": "grounded",
+        "rotation": 0,
+        "pivot": null,
+        "worldPivot": null,
+        "scale": 1
+      },
+      "damage": 0,
+      "projectiles": 3,
+      "effects": [
+        {
+          "type": "muzzle",
+          "x": 402,
+          "y": 456
+        }
+      ]
+    },
+    {
+      "id": "iona",
+      "started": true,
+      "name": "skill1",
+      "pose": {
+        "state": "skill1",
+        "frame": 2,
+        "phase": "grounded",
+        "rotation": 0,
+        "pivot": null,
+        "worldPivot": null,
+        "scale": 1
+      },
+      "damage": 0,
+      "projectiles": 1,
+      "effects": [
+        {
+          "type": "muzzle",
+          "x": 379,
+          "y": 494
+        }
+      ]
+    },
+    {
+      "id": "brink",
+      "started": true,
+      "name": "skill1",
+      "pose": {
+        "state": "skill1",
+        "frame": 2,
+        "phase": "grounded",
+        "rotation": 0,
+        "pivot": null,
+        "worldPivot": null,
+        "scale": 1
+      },
+      "damage": 0,
+      "projectiles": 1,
+      "effects": [
+        {
+          "type": "muzzle",
+          "x": 421,
+          "y": 451
+        }
+      ]
+    },
+    {
+      "id": "nix",
+      "started": true,
+      "name": "skill1",
+      "pose": {
+        "state": "skill1",
+        "frame": 2,
+        "phase": "grounded",
+        "rotation": 0,
+        "pivot": null,
+        "worldPivot": null,
+        "scale": 1
+      },
+      "damage": 0,
+      "projectiles": 1,
+      "effects": [
+        {
+          "type": "muzzle",
+          "x": 381,
+          "y": 529
+        }
+      ]
+    },
+    {
+      "id": "torque",
+      "started": true,
+      "name": "skill1",
+      "pose": {
+        "state": "skill1",
+        "frame": 2,
+        "phase": "grounded",
+        "rotation": 0,
+        "pivot": null,
+        "worldPivot": null,
+        "scale": 1
+      },
+      "damage": 0,
+      "projectiles": 1,
+      "effects": [
+        {
+          "type": "muzzle",
+          "x": 417,
+          "y": 454
+        }
+      ]
+    },
+    {
+      "id": "vela",
+      "started": true,
+      "name": "skill1",
+      "pose": {
+        "state": "skill1",
+        "frame": 2,
+        "phase": "grounded",
+        "rotation": 0,
+        "pivot": null,
+        "worldPivot": null,
+        "scale": 1
+      },
+      "damage": 0,
+      "projectiles": 1,
+      "effects": []
+    },
+    {
+      "id": "orbit",
+      "started": true,
+      "name": "skill1",
+      "pose": {
+        "state": "skill1",
+        "frame": 2,
+        "phase": "grounded",
+        "rotation": 0,
+        "pivot": null,
+        "worldPivot": null,
+        "scale": 1
+      },
+      "damage": 0,
+      "projectiles": 1,
+      "effects": [
+        {
+          "type": "muzzle",
+          "x": 379,
+          "y": 504
+        }
+      ]
+    }
+  ],
+  "pageErrors": []
+}

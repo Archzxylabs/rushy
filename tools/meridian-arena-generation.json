@@ -1,0 +1,19 @@
+{
+  "assets": [
+    {
+      "id": "halo-station"
+    },
+    {
+      "id": "tide-docks"
+    },
+    {
+      "id": "glass-orchard"
+    },
+    {
+      "id": "foundry-nine"
+    },
+    {
+      "id": "night-bazaar"
+    }
+  ]
+}

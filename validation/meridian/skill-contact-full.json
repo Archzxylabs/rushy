@@ -1,0 +1,294 @@
+{
+  "captures": [
+    {
+      "fighter": "aster",
+      "slot": "skill1",
+      "frame": 2,
+      "state": "skill1",
+      "heroX": 350,
+      "action": "skill1"
+    },
+    {
+      "fighter": "aster",
+      "slot": "skill2",
+      "frame": 2,
+      "state": "skill2",
+      "heroX": 615,
+      "action": "skill2"
+    },
+    {
+      "fighter": "aster",
+      "slot": "ultimate",
+      "frame": 2,
+      "state": "ultimate",
+      "heroX": 350,
+      "action": "ultimate"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill1",
+      "frame": 2,
+      "state": "skill1",
+      "heroX": 455,
+      "action": "skill1"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill2",
+      "frame": 2,
+      "state": "skill2",
+      "heroX": 580,
+      "action": "skill2"
+    },
+    {
+      "fighter": "moro",
+      "slot": "ultimate",
+      "frame": 2,
+      "state": "ultimate",
+      "heroX": 350,
+      "action": "ultimate"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill1",
+      "frame": 2,
+      "state": "skill1",
+      "heroX": 350,
+      "action": "skill1"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill2",
+      "frame": 2,
+      "state": "skill2",
+      "heroX": 350,
+      "action": "skill2"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "ultimate",
+      "frame": 2,
+      "state": "ultimate",
+      "heroX": 350,
+      "action": "ultimate"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill1",
+      "frame": 2,
+      "state": "skill1",
+      "heroX": 350,
+      "action": "skill1"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill2",
+      "frame": 2,
+      "state": "skill2",
+      "heroX": 350,
+      "action": "skill2"
+    },
+    {
+      "fighter": "loom",
+      "slot": "ultimate",
+      "frame": 2,
+      "state": "ultimate",
+      "heroX": 350,
+      "action": "ultimate"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill1",
+      "frame": 2,
+      "state": "skill1",
+      "heroX": 350,
+      "action": "skill1"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill2",
+      "frame": 2,
+      "state": "skill2",
+      "heroX": 350,
+      "action": "skill2"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "ultimate",
+      "frame": 2,
+      "state": "ultimate",
+      "heroX": 350,
+      "action": "ultimate"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill1",
+      "frame": 2,
+      "state": "skill1",
+      "heroX": 350,
+      "action": "skill1"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill2",
+      "frame": 2,
+      "state": "skill2",
+      "heroX": 350,
+      "action": "skill2"
+    },
+    {
+      "fighter": "kite",
+      "slot": "ultimate",
+      "frame": 2,
+      "state": "ultimate",
+      "heroX": 350,
+      "action": "ultimate"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill1",
+      "frame": 2,
+      "state": "skill1",
+      "heroX": 350,
+      "action": "skill1"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill2",
+      "frame": 2,
+      "state": "skill2",
+      "heroX": 600,
+      "action": "skill2"
+    },
+    {
+      "fighter": "iona",
+      "slot": "ultimate",
+      "frame": 2,
+      "state": "ultimate",
+      "heroX": 350,
+      "action": "ultimate"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill1",
+      "frame": 2,
+      "state": "skill1",
+      "heroX": 350,
+      "action": "skill1"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill2",
+      "frame": 2,
+      "state": "skill2",
+      "heroX": 350,
+      "action": "skill2"
+    },
+    {
+      "fighter": "brink",
+      "slot": "ultimate",
+      "frame": 2,
+      "state": "ultimate",
+      "heroX": 350,
+      "action": "ultimate"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill1",
+      "frame": 2,
+      "state": "skill1",
+      "heroX": 350,
+      "action": "skill1"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill2",
+      "frame": 2,
+      "state": "skill2",
+      "heroX": 776,
+      "action": "skill2"
+    },
+    {
+      "fighter": "nix",
+      "slot": "ultimate",
+      "frame": 2,
+      "state": "ultimate",
+      "heroX": 350,
+      "action": "ultimate"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill1",
+      "frame": 2,
+      "state": "skill1",
+      "heroX": 350,
+      "action": "skill1"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill2",
+      "frame": 2,
+      "state": "skill2",
+      "heroX": 350,
+      "action": "skill2"
+    },
+    {
+      "fighter": "torque",
+      "slot": "ultimate",
+      "frame": 2,
+      "state": "ultimate",
+      "heroX": 350,
+      "action": "ultimate"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill1",
+      "frame": 2,
+      "state": "skill1",
+      "heroX": 350,
+      "action": "skill1"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill2",
+      "frame": 2,
+      "state": "skill2",
+      "heroX": 626,
+      "action": "skill2"
+    },
+    {
+      "fighter": "vela",
+      "slot": "ultimate",
+      "frame": 2,
+      "state": "ultimate",
+      "heroX": 350,
+      "action": "ultimate"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill1",
+      "frame": 2,
+      "state": "skill1",
+      "heroX": 350,
+      "action": "skill1"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill2",
+      "frame": 2,
+      "state": "skill2",
+      "heroX": 350,
+      "action": "skill2"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "ultimate",
+      "frame": 2,
+      "state": "ultimate",
+      "heroX": 350,
+      "action": "ultimate"
+    }
+  ],
+  "failures": [],
+  "pageErrors": []
+}

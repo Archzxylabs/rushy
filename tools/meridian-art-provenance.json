@@ -1,0 +1,209 @@
+{
+  "tool": "built-in OpenAI image generation",
+  "character_prompt_family": "Original adult full-body 2D arcade fighter on a transparent background, facing slightly right, retro-futurist transit-city sports fantasy, readable silhouette and outfit, no floor, background, text, logo, trademark, watermark, or extra limbs.",
+  "arena_prompt_family": "Original 16:9 side-on fighting game stage in a retro-futurist transit city, continuous flat floor across bottom 18%, low-contrast combat center, no people, text, or logos.",
+  "characters": [
+    {
+      "id": "aster",
+      "role": "ROUTE MARSHAL",
+      "style": "Coordinator / relay drones",
+      "source_png": "assets/meridian/source-art/characters/aster.png",
+      "combat_source_pngs": [
+        "assets/meridian/source-art/combat/aster/poses-a.png",
+        "assets/meridian/source-art/combat/aster/poses-b.png",
+        "assets/meridian/source-art/combat/aster/poses-c.png",
+        "assets/meridian/source-art/combat/aster/poses-d.png"
+      ]
+    },
+    {
+      "id": "moro",
+      "role": "SKYBIKE RACER",
+      "style": "Agile / temporary overdrive",
+      "source_png": "assets/meridian/source-art/characters/moro.png",
+      "combat_source_pngs": [
+        "assets/meridian/source-art/combat/moro/poses-a.png",
+        "assets/meridian/source-art/combat/moro/poses-b.png",
+        "assets/meridian/source-art/combat/moro/poses-c.png",
+        "assets/meridian/source-art/combat/moro/poses-d.png"
+      ]
+    },
+    {
+      "id": "beacon",
+      "role": "CROWD CONDUCTOR",
+      "style": "Rally / shockwaves",
+      "source_png": "assets/meridian/source-art/characters/beacon.png",
+      "combat_source_pngs": [
+        "assets/meridian/source-art/combat/beacon/poses-a.png",
+        "assets/meridian/source-art/combat/beacon/poses-b.png",
+        "assets/meridian/source-art/combat/beacon/poses-c.png",
+        "assets/meridian/source-art/combat/beacon/poses-d.png"
+      ]
+    },
+    {
+      "id": "loom",
+      "role": "GLASS GUARDIAN",
+      "style": "Defense / counter & summon",
+      "source_png": "assets/meridian/source-art/characters/loom.png",
+      "combat_source_pngs": [
+        "assets/meridian/source-art/combat/loom/poses-a.png",
+        "assets/meridian/source-art/combat/loom/poses-b.png",
+        "assets/meridian/source-art/combat/loom/poses-c.png",
+        "assets/meridian/source-art/combat/loom/poses-d.png"
+      ]
+    },
+    {
+      "id": "vesper",
+      "role": "NIGHT PATHFINDER",
+      "style": "Ribbon / long reach",
+      "source_png": "assets/meridian/source-art/characters/vesper.png",
+      "combat_source_pngs": [
+        "assets/meridian/source-art/combat/vesper/poses-a.png",
+        "assets/meridian/source-art/combat/vesper/poses-b.png",
+        "assets/meridian/source-art/combat/vesper/poses-c.png",
+        "assets/meridian/source-art/combat/vesper/poses-d.png"
+      ]
+    },
+    {
+      "id": "kite",
+      "role": "AERIAL MECHANIC",
+      "style": "Zoner / drone swarm",
+      "source_png": "assets/meridian/source-art/characters/kite.png",
+      "combat_source_pngs": [
+        "assets/meridian/source-art/combat/kite/poses-a.png",
+        "assets/meridian/source-art/combat/kite/poses-b.png",
+        "assets/meridian/source-art/combat/kite/poses-c.png",
+        "assets/meridian/source-art/combat/kite/poses-d.png"
+      ]
+    },
+    {
+      "id": "iona",
+      "role": "GLACIER COURIER",
+      "style": "Lance / falling strikes",
+      "source_png": "assets/meridian/source-art/characters/iona.png",
+      "combat_source_pngs": [
+        "assets/meridian/source-art/combat/iona/poses-a.png",
+        "assets/meridian/source-art/combat/iona/poses-b.png",
+        "assets/meridian/source-art/combat/iona/poses-c.png",
+        "assets/meridian/source-art/combat/iona/poses-d.png"
+      ]
+    },
+    {
+      "id": "brink",
+      "role": "DOCK WORKER",
+      "style": "Heavy / ground control",
+      "source_png": "assets/meridian/source-art/characters/brink.png",
+      "combat_source_pngs": [
+        "assets/meridian/source-art/combat/brink/poses-a.png",
+        "assets/meridian/source-art/combat/brink/poses-b.png",
+        "assets/meridian/source-art/combat/brink/poses-c.png",
+        "assets/meridian/source-art/combat/brink/poses-d.png"
+      ]
+    },
+    {
+      "id": "nix",
+      "role": "BAZAAR MURALIST",
+      "style": "Trickster / disc & tether",
+      "source_png": "assets/meridian/source-art/characters/nix.png",
+      "combat_source_pngs": [
+        "assets/meridian/source-art/combat/nix/poses-a.png",
+        "assets/meridian/source-art/combat/nix/poses-b.png",
+        "assets/meridian/source-art/combat/nix/poses-c.png",
+        "assets/meridian/source-art/combat/nix/poses-d.png"
+      ]
+    },
+    {
+      "id": "torque",
+      "role": "FOUNDRY ENGINEER",
+      "style": "Barrage / micro rockets",
+      "source_png": "assets/meridian/source-art/characters/torque.png",
+      "combat_source_pngs": [
+        "assets/meridian/source-art/combat/torque/poses-a.png",
+        "assets/meridian/source-art/combat/torque/poses-b.png",
+        "assets/meridian/source-art/combat/torque/poses-c.png",
+        "assets/meridian/source-art/combat/torque/poses-d.png"
+      ]
+    },
+    {
+      "id": "vela",
+      "role": "MAG-SKATE COURIER",
+      "style": "Rushdown / fast projectiles",
+      "source_png": "assets/meridian/source-art/characters/vela.png",
+      "combat_source_pngs": [
+        "assets/meridian/source-art/combat/vela/poses-a.png",
+        "assets/meridian/source-art/combat/vela/poses-b.png",
+        "assets/meridian/source-art/combat/vela/poses-c.png",
+        "assets/meridian/source-art/combat/vela/poses-d.png"
+      ]
+    },
+    {
+      "id": "orbit",
+      "role": "GRAVITY CARTOGRAPHER",
+      "style": "Control / orbital field",
+      "source_png": "assets/meridian/source-art/characters/orbit.png",
+      "combat_source_pngs": [
+        "assets/meridian/source-art/combat/orbit/poses-a.png",
+        "assets/meridian/source-art/combat/orbit/poses-b.png",
+        "assets/meridian/source-art/combat/orbit/poses-c.png",
+        "assets/meridian/source-art/combat/orbit/poses-d.png"
+      ]
+    }
+  ],
+  "arenas": [
+    {
+      "id": "halo-station",
+      "source_png": "assets/meridian/source-art/arenas/halo-station.png"
+    },
+    {
+      "id": "tide-docks",
+      "source_png": "assets/meridian/source-art/arenas/tide-docks.png"
+    },
+    {
+      "id": "glass-orchard",
+      "source_png": "assets/meridian/source-art/arenas/glass-orchard.png"
+    },
+    {
+      "id": "foundry-nine",
+      "source_png": "assets/meridian/source-art/arenas/foundry-nine.png"
+    },
+    {
+      "id": "night-bazaar",
+      "source_png": "assets/meridian/source-art/arenas/night-bazaar.png"
+    }
+  ],
+  "note": "These are prompt families and output mappings, not a verbatim generation transcript.",
+  "combat_sheet_prompt_family": "Original six-pose sheets of the same Meridian fighter using established pose sheets as identity references. Three poses per row, full body, right-facing 2D fighting-game actions, transparent background, no text or logos. A and B cover the base 12 combat key poses; C adds skill anticipation and follow-through; D adds skill transition poses, a combo strike, a run step, and guarded rise.",
+  "combat_pose_mapping": {
+    "poses-a.png": [
+      "idle",
+      "run",
+      "jump",
+      "attack1",
+      "skill1",
+      "hurt"
+    ],
+    "poses-b.png": [
+      "walk alternate",
+      "crouch and doublejump",
+      "attack2",
+      "skill2",
+      "ultimate",
+      "down"
+    ],
+    "poses-c.png": [
+      "skill1 anticipation",
+      "skill1 follow-through",
+      "skill2 anticipation",
+      "skill2 follow-through",
+      "ultimate anticipation",
+      "ultimate follow-through"
+    ],
+    "poses-d.png": [
+      "skill1 release recoil",
+      "skill2 impact continuation",
+      "ultimate channel transition",
+      "attack3 combo strike",
+      "run contact step",
+      "guarded rise"
+    ]
+  }
+}

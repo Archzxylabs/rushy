@@ -1,0 +1,1772 @@
+{
+  "captures": [
+    {
+      "fighter": "aster",
+      "slot": "skill1",
+      "phase": "anticipate",
+      "duration": 0.54,
+      "ratio": 0.08639999999999999,
+      "frame": 0,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "aster",
+      "slot": "skill1",
+      "phase": "windup",
+      "duration": 0.54,
+      "ratio": 0.33599999999999997,
+      "frame": 1,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "aster",
+      "slot": "skill1",
+      "phase": "contact",
+      "duration": 0.54,
+      "ratio": 0.5736,
+      "frame": 2,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "aster",
+      "slot": "skill1",
+      "phase": "recover",
+      "duration": 0.54,
+      "ratio": 0.896,
+      "frame": 3,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill1",
+      "phase": "anticipate",
+      "duration": 0.54,
+      "ratio": 0.08639999999999999,
+      "frame": 0,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill1",
+      "phase": "windup",
+      "duration": 0.54,
+      "ratio": 0.33599999999999997,
+      "frame": 1,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill1",
+      "phase": "contact",
+      "duration": 0.54,
+      "ratio": 0.5736,
+      "frame": 2,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill1",
+      "phase": "recover",
+      "duration": 0.54,
+      "ratio": 0.896,
+      "frame": 3,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill1",
+      "phase": "anticipate",
+      "duration": 0.54,
+      "ratio": 0.08639999999999999,
+      "frame": 0,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill1",
+      "phase": "windup",
+      "duration": 0.54,
+      "ratio": 0.33599999999999997,
+      "frame": 1,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill1",
+      "phase": "contact",
+      "duration": 0.54,
+      "ratio": 0.5736,
+      "frame": 2,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill1",
+      "phase": "recover",
+      "duration": 0.54,
+      "ratio": 0.896,
+      "frame": 3,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill1",
+      "phase": "anticipate",
+      "duration": 0.54,
+      "ratio": 0.08639999999999999,
+      "frame": 0,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill1",
+      "phase": "windup",
+      "duration": 0.54,
+      "ratio": 0.33599999999999997,
+      "frame": 1,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill1",
+      "phase": "contact",
+      "duration": 0.54,
+      "ratio": 0.5736,
+      "frame": 2,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill1",
+      "phase": "recover",
+      "duration": 0.54,
+      "ratio": 0.896,
+      "frame": 3,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill1",
+      "phase": "anticipate",
+      "duration": 0.54,
+      "ratio": 0.08639999999999999,
+      "frame": 0,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill1",
+      "phase": "windup",
+      "duration": 0.54,
+      "ratio": 0.33599999999999997,
+      "frame": 1,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill1",
+      "phase": "contact",
+      "duration": 0.54,
+      "ratio": 0.5736,
+      "frame": 2,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill1",
+      "phase": "recover",
+      "duration": 0.54,
+      "ratio": 0.896,
+      "frame": 3,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill1",
+      "phase": "anticipate",
+      "duration": 0.54,
+      "ratio": 0.08639999999999999,
+      "frame": 0,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill1",
+      "phase": "windup",
+      "duration": 0.54,
+      "ratio": 0.33599999999999997,
+      "frame": 1,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill1",
+      "phase": "contact",
+      "duration": 0.54,
+      "ratio": 0.5736,
+      "frame": 2,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill1",
+      "phase": "recover",
+      "duration": 0.54,
+      "ratio": 0.896,
+      "frame": 3,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill1",
+      "phase": "anticipate",
+      "duration": 0.54,
+      "ratio": 0.08639999999999999,
+      "frame": 0,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill1",
+      "phase": "windup",
+      "duration": 0.54,
+      "ratio": 0.33599999999999997,
+      "frame": 1,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill1",
+      "phase": "contact",
+      "duration": 0.54,
+      "ratio": 0.5736,
+      "frame": 2,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill1",
+      "phase": "recover",
+      "duration": 0.54,
+      "ratio": 0.896,
+      "frame": 3,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill1",
+      "phase": "anticipate",
+      "duration": 0.54,
+      "ratio": 0.08639999999999999,
+      "frame": 0,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill1",
+      "phase": "windup",
+      "duration": 0.54,
+      "ratio": 0.33599999999999997,
+      "frame": 1,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill1",
+      "phase": "contact",
+      "duration": 0.54,
+      "ratio": 0.5736,
+      "frame": 2,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill1",
+      "phase": "recover",
+      "duration": 0.54,
+      "ratio": 0.896,
+      "frame": 3,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill1",
+      "phase": "anticipate",
+      "duration": 0.54,
+      "ratio": 0.08639999999999999,
+      "frame": 0,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill1",
+      "phase": "windup",
+      "duration": 0.54,
+      "ratio": 0.33599999999999997,
+      "frame": 1,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill1",
+      "phase": "contact",
+      "duration": 0.54,
+      "ratio": 0.5736,
+      "frame": 2,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill1",
+      "phase": "recover",
+      "duration": 0.54,
+      "ratio": 0.896,
+      "frame": 3,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill1",
+      "phase": "anticipate",
+      "duration": 0.54,
+      "ratio": 0.08639999999999999,
+      "frame": 0,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill1",
+      "phase": "windup",
+      "duration": 0.54,
+      "ratio": 0.33599999999999997,
+      "frame": 1,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill1",
+      "phase": "contact",
+      "duration": 0.54,
+      "ratio": 0.5736,
+      "frame": 2,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill1",
+      "phase": "recover",
+      "duration": 0.54,
+      "ratio": 0.896,
+      "frame": 3,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill1",
+      "phase": "anticipate",
+      "duration": 0.54,
+      "ratio": 0.08639999999999999,
+      "frame": 0,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill1",
+      "phase": "windup",
+      "duration": 0.54,
+      "ratio": 0.33599999999999997,
+      "frame": 1,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill1",
+      "phase": "contact",
+      "duration": 0.54,
+      "ratio": 0.5736,
+      "frame": 2,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill1",
+      "phase": "recover",
+      "duration": 0.54,
+      "ratio": 0.896,
+      "frame": 3,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill1",
+      "phase": "anticipate",
+      "duration": 0.54,
+      "ratio": 0.08639999999999999,
+      "frame": 0,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill1",
+      "phase": "windup",
+      "duration": 0.54,
+      "ratio": 0.33599999999999997,
+      "frame": 1,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill1",
+      "phase": "contact",
+      "duration": 0.54,
+      "ratio": 0.5736,
+      "frame": 2,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill1",
+      "phase": "recover",
+      "duration": 0.54,
+      "ratio": 0.896,
+      "frame": 3,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "aster",
+      "slot": "skill2",
+      "phase": "anticipate",
+      "duration": 0.66,
+      "ratio": 0.0936,
+      "frame": 0,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "aster",
+      "slot": "skill2",
+      "phase": "windup",
+      "duration": 0.66,
+      "ratio": 0.364,
+      "frame": 1,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "aster",
+      "slot": "skill2",
+      "phase": "contact",
+      "duration": 0.66,
+      "ratio": 0.6064,
+      "frame": 2,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "aster",
+      "slot": "skill2",
+      "phase": "recover",
+      "duration": 0.66,
+      "ratio": 0.904,
+      "frame": 3,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill2",
+      "phase": "anticipate",
+      "duration": 0.66,
+      "ratio": 0.0936,
+      "frame": 0,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill2",
+      "phase": "windup",
+      "duration": 0.66,
+      "ratio": 0.364,
+      "frame": 1,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill2",
+      "phase": "contact",
+      "duration": 0.66,
+      "ratio": 0.6064,
+      "frame": 2,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill2",
+      "phase": "recover",
+      "duration": 0.66,
+      "ratio": 0.904,
+      "frame": 3,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill2",
+      "phase": "anticipate",
+      "duration": 0.66,
+      "ratio": 0.0936,
+      "frame": 0,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill2",
+      "phase": "windup",
+      "duration": 0.66,
+      "ratio": 0.364,
+      "frame": 1,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill2",
+      "phase": "contact",
+      "duration": 0.66,
+      "ratio": 0.6064,
+      "frame": 2,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill2",
+      "phase": "recover",
+      "duration": 0.66,
+      "ratio": 0.904,
+      "frame": 3,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill2",
+      "phase": "anticipate",
+      "duration": 0.66,
+      "ratio": 0.0936,
+      "frame": 0,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill2",
+      "phase": "windup",
+      "duration": 0.66,
+      "ratio": 0.364,
+      "frame": 1,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill2",
+      "phase": "contact",
+      "duration": 0.66,
+      "ratio": 0.6064,
+      "frame": 2,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill2",
+      "phase": "recover",
+      "duration": 0.66,
+      "ratio": 0.904,
+      "frame": 3,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill2",
+      "phase": "anticipate",
+      "duration": 0.66,
+      "ratio": 0.0936,
+      "frame": 0,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill2",
+      "phase": "windup",
+      "duration": 0.66,
+      "ratio": 0.364,
+      "frame": 1,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill2",
+      "phase": "contact",
+      "duration": 0.66,
+      "ratio": 0.6064,
+      "frame": 2,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill2",
+      "phase": "recover",
+      "duration": 0.66,
+      "ratio": 0.904,
+      "frame": 3,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill2",
+      "phase": "anticipate",
+      "duration": 0.66,
+      "ratio": 0.0936,
+      "frame": 0,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill2",
+      "phase": "windup",
+      "duration": 0.66,
+      "ratio": 0.364,
+      "frame": 1,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill2",
+      "phase": "contact",
+      "duration": 0.66,
+      "ratio": 0.6064,
+      "frame": 2,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill2",
+      "phase": "recover",
+      "duration": 0.66,
+      "ratio": 0.904,
+      "frame": 3,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill2",
+      "phase": "anticipate",
+      "duration": 0.66,
+      "ratio": 0.0936,
+      "frame": 0,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill2",
+      "phase": "windup",
+      "duration": 0.66,
+      "ratio": 0.364,
+      "frame": 1,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill2",
+      "phase": "contact",
+      "duration": 0.66,
+      "ratio": 0.6064,
+      "frame": 2,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill2",
+      "phase": "recover",
+      "duration": 0.66,
+      "ratio": 0.904,
+      "frame": 3,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill2",
+      "phase": "anticipate",
+      "duration": 0.66,
+      "ratio": 0.0936,
+      "frame": 0,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill2",
+      "phase": "windup",
+      "duration": 0.66,
+      "ratio": 0.364,
+      "frame": 1,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill2",
+      "phase": "contact",
+      "duration": 0.66,
+      "ratio": 0.6064,
+      "frame": 2,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill2",
+      "phase": "recover",
+      "duration": 0.66,
+      "ratio": 0.904,
+      "frame": 3,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill2",
+      "phase": "anticipate",
+      "duration": 0.66,
+      "ratio": 0.0936,
+      "frame": 0,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill2",
+      "phase": "windup",
+      "duration": 0.66,
+      "ratio": 0.364,
+      "frame": 1,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill2",
+      "phase": "contact",
+      "duration": 0.66,
+      "ratio": 0.6064,
+      "frame": 2,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill2",
+      "phase": "recover",
+      "duration": 0.66,
+      "ratio": 0.904,
+      "frame": 3,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill2",
+      "phase": "anticipate",
+      "duration": 0.66,
+      "ratio": 0.0936,
+      "frame": 0,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill2",
+      "phase": "windup",
+      "duration": 0.66,
+      "ratio": 0.364,
+      "frame": 1,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill2",
+      "phase": "contact",
+      "duration": 0.66,
+      "ratio": 0.6064,
+      "frame": 2,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill2",
+      "phase": "recover",
+      "duration": 0.66,
+      "ratio": 0.904,
+      "frame": 3,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill2",
+      "phase": "anticipate",
+      "duration": 0.66,
+      "ratio": 0.0936,
+      "frame": 0,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill2",
+      "phase": "windup",
+      "duration": 0.66,
+      "ratio": 0.364,
+      "frame": 1,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill2",
+      "phase": "contact",
+      "duration": 0.66,
+      "ratio": 0.6064,
+      "frame": 2,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill2",
+      "phase": "recover",
+      "duration": 0.66,
+      "ratio": 0.904,
+      "frame": 3,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill2",
+      "phase": "anticipate",
+      "duration": 0.66,
+      "ratio": 0.0936,
+      "frame": 0,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill2",
+      "phase": "windup",
+      "duration": 0.66,
+      "ratio": 0.364,
+      "frame": 1,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill2",
+      "phase": "contact",
+      "duration": 0.66,
+      "ratio": 0.6064,
+      "frame": 2,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill2",
+      "phase": "recover",
+      "duration": 0.66,
+      "ratio": 0.904,
+      "frame": 3,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "aster",
+      "slot": "ultimate",
+      "phase": "anticipate",
+      "duration": 0.5,
+      "ratio": 0.09,
+      "frame": 0,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "aster",
+      "slot": "ultimate",
+      "phase": "windup",
+      "duration": 0.5,
+      "ratio": 0.35,
+      "frame": 1,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "aster",
+      "slot": "ultimate",
+      "phase": "contact",
+      "duration": 0.5,
+      "ratio": 0.59,
+      "frame": 2,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "aster",
+      "slot": "ultimate",
+      "phase": "recover",
+      "duration": 0.5,
+      "ratio": 0.9,
+      "frame": 3,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "moro",
+      "slot": "ultimate",
+      "phase": "anticipate",
+      "duration": 0.5,
+      "ratio": 0.09,
+      "frame": 0,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "moro",
+      "slot": "ultimate",
+      "phase": "windup",
+      "duration": 0.5,
+      "ratio": 0.35,
+      "frame": 1,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "moro",
+      "slot": "ultimate",
+      "phase": "contact",
+      "duration": 0.5,
+      "ratio": 0.59,
+      "frame": 2,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "moro",
+      "slot": "ultimate",
+      "phase": "recover",
+      "duration": 0.5,
+      "ratio": 0.9,
+      "frame": 3,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "ultimate",
+      "phase": "anticipate",
+      "duration": 0.5,
+      "ratio": 0.09,
+      "frame": 0,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "ultimate",
+      "phase": "windup",
+      "duration": 0.5,
+      "ratio": 0.35,
+      "frame": 1,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "ultimate",
+      "phase": "contact",
+      "duration": 0.5,
+      "ratio": 0.59,
+      "frame": 2,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "ultimate",
+      "phase": "recover",
+      "duration": 0.5,
+      "ratio": 0.9,
+      "frame": 3,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "loom",
+      "slot": "ultimate",
+      "phase": "anticipate",
+      "duration": 0.5,
+      "ratio": 0.09,
+      "frame": 0,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "loom",
+      "slot": "ultimate",
+      "phase": "windup",
+      "duration": 0.5,
+      "ratio": 0.35,
+      "frame": 1,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "loom",
+      "slot": "ultimate",
+      "phase": "contact",
+      "duration": 0.5,
+      "ratio": 0.59,
+      "frame": 2,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "loom",
+      "slot": "ultimate",
+      "phase": "recover",
+      "duration": 0.5,
+      "ratio": 0.9,
+      "frame": 3,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "ultimate",
+      "phase": "anticipate",
+      "duration": 0.5,
+      "ratio": 0.09,
+      "frame": 0,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "ultimate",
+      "phase": "windup",
+      "duration": 0.5,
+      "ratio": 0.35,
+      "frame": 1,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "ultimate",
+      "phase": "contact",
+      "duration": 0.5,
+      "ratio": 0.59,
+      "frame": 2,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "ultimate",
+      "phase": "recover",
+      "duration": 0.5,
+      "ratio": 0.9,
+      "frame": 3,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "kite",
+      "slot": "ultimate",
+      "phase": "anticipate",
+      "duration": 0.5,
+      "ratio": 0.09,
+      "frame": 0,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "kite",
+      "slot": "ultimate",
+      "phase": "windup",
+      "duration": 0.5,
+      "ratio": 0.35,
+      "frame": 1,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "kite",
+      "slot": "ultimate",
+      "phase": "contact",
+      "duration": 0.5,
+      "ratio": 0.59,
+      "frame": 2,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "kite",
+      "slot": "ultimate",
+      "phase": "recover",
+      "duration": 0.5,
+      "ratio": 0.9,
+      "frame": 3,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "iona",
+      "slot": "ultimate",
+      "phase": "anticipate",
+      "duration": 0.5,
+      "ratio": 0.09,
+      "frame": 0,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "iona",
+      "slot": "ultimate",
+      "phase": "windup",
+      "duration": 0.5,
+      "ratio": 0.35,
+      "frame": 1,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "iona",
+      "slot": "ultimate",
+      "phase": "contact",
+      "duration": 0.5,
+      "ratio": 0.59,
+      "frame": 2,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "iona",
+      "slot": "ultimate",
+      "phase": "recover",
+      "duration": 0.5,
+      "ratio": 0.9,
+      "frame": 3,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "brink",
+      "slot": "ultimate",
+      "phase": "anticipate",
+      "duration": 0.5,
+      "ratio": 0.09,
+      "frame": 0,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "brink",
+      "slot": "ultimate",
+      "phase": "windup",
+      "duration": 0.5,
+      "ratio": 0.35,
+      "frame": 1,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "brink",
+      "slot": "ultimate",
+      "phase": "contact",
+      "duration": 0.5,
+      "ratio": 0.59,
+      "frame": 2,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "brink",
+      "slot": "ultimate",
+      "phase": "recover",
+      "duration": 0.5,
+      "ratio": 0.9,
+      "frame": 3,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "nix",
+      "slot": "ultimate",
+      "phase": "anticipate",
+      "duration": 0.5,
+      "ratio": 0.09,
+      "frame": 0,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "nix",
+      "slot": "ultimate",
+      "phase": "windup",
+      "duration": 0.5,
+      "ratio": 0.35,
+      "frame": 1,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "nix",
+      "slot": "ultimate",
+      "phase": "contact",
+      "duration": 0.5,
+      "ratio": 0.59,
+      "frame": 2,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "nix",
+      "slot": "ultimate",
+      "phase": "recover",
+      "duration": 0.5,
+      "ratio": 0.9,
+      "frame": 3,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "torque",
+      "slot": "ultimate",
+      "phase": "anticipate",
+      "duration": 0.5,
+      "ratio": 0.09,
+      "frame": 0,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "torque",
+      "slot": "ultimate",
+      "phase": "windup",
+      "duration": 0.5,
+      "ratio": 0.35,
+      "frame": 1,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "torque",
+      "slot": "ultimate",
+      "phase": "contact",
+      "duration": 0.5,
+      "ratio": 0.59,
+      "frame": 2,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "torque",
+      "slot": "ultimate",
+      "phase": "recover",
+      "duration": 0.5,
+      "ratio": 0.9,
+      "frame": 3,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "vela",
+      "slot": "ultimate",
+      "phase": "anticipate",
+      "duration": 0.5,
+      "ratio": 0.09,
+      "frame": 0,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "vela",
+      "slot": "ultimate",
+      "phase": "windup",
+      "duration": 0.5,
+      "ratio": 0.35,
+      "frame": 1,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "vela",
+      "slot": "ultimate",
+      "phase": "contact",
+      "duration": 0.5,
+      "ratio": 0.59,
+      "frame": 2,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "vela",
+      "slot": "ultimate",
+      "phase": "recover",
+      "duration": 0.5,
+      "ratio": 0.9,
+      "frame": 3,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "ultimate",
+      "phase": "anticipate",
+      "duration": 0.5,
+      "ratio": 0.09,
+      "frame": 0,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "ultimate",
+      "phase": "windup",
+      "duration": 0.5,
+      "ratio": 0.35,
+      "frame": 1,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "ultimate",
+      "phase": "contact",
+      "duration": 0.5,
+      "ratio": 0.59,
+      "frame": 2,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "ultimate",
+      "phase": "recover",
+      "duration": 0.5,
+      "ratio": 0.9,
+      "frame": 3,
+      "state": "ultimate",
+      "action": "ultimate"
+    }
+  ],
+  "mirrorCaptures": [
+    {
+      "fighter": "aster",
+      "slot": "skill1",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "aster",
+      "slot": "skill2",
+      "frame": 2,
+      "facing": -1,
+      "x": 70,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "aster",
+      "slot": "ultimate",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill1",
+      "frame": 2,
+      "facing": -1,
+      "x": 245,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill2",
+      "frame": 2,
+      "facing": -1,
+      "x": 198,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "moro",
+      "slot": "ultimate",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill1",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill2",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "ultimate",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill1",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill2",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "loom",
+      "slot": "ultimate",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill1",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill2",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "ultimate",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill1",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill2",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "kite",
+      "slot": "ultimate",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill1",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill2",
+      "frame": 2,
+      "facing": -1,
+      "x": 70,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "iona",
+      "slot": "ultimate",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill1",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill2",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "brink",
+      "slot": "ultimate",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill1",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill2",
+      "frame": 2,
+      "facing": -1,
+      "x": 186,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "nix",
+      "slot": "ultimate",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill1",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill2",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "torque",
+      "slot": "ultimate",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill1",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill2",
+      "frame": 2,
+      "facing": -1,
+      "x": 70,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "vela",
+      "slot": "ultimate",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "ultimate",
+      "action": "ultimate"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill1",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill1",
+      "action": "skill1"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill2",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "skill2",
+      "action": "skill2"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "ultimate",
+      "frame": 2,
+      "facing": -1,
+      "x": 350,
+      "state": "ultimate",
+      "action": "ultimate"
+    }
+  ],
+  "pageErrors": [],
+  "failures": []
+}

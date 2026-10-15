@@ -1,0 +1,71 @@
+{
+  "source": "built-in image generation; 48 original six-pose sheets",
+  "characters": {
+    "aster": {
+      "atlas": "assets/meridian/fighters/aster/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 63
+    },
+    "moro:base": {
+      "atlas": "assets/meridian/fighters/moro/base/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 67
+    },
+    "moro:empowered": {
+      "atlas": "assets/meridian/fighters/moro/empowered/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 67
+    },
+    "beacon": {
+      "atlas": "assets/meridian/fighters/beacon/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 67
+    },
+    "loom": {
+      "atlas": "assets/meridian/fighters/loom/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 67
+    },
+    "vesper": {
+      "atlas": "assets/meridian/fighters/vesper/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 67
+    },
+    "kite": {
+      "atlas": "assets/meridian/fighters/kite/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 67
+    },
+    "iona": {
+      "atlas": "assets/meridian/fighters/iona/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 67
+    },
+    "brink": {
+      "atlas": "assets/meridian/fighters/brink/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 67
+    },
+    "nix": {
+      "atlas": "assets/meridian/fighters/nix/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 67
+    },
+    "torque": {
+      "atlas": "assets/meridian/fighters/torque/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 67
+    },
+    "vela": {
+      "atlas": "assets/meridian/fighters/vela/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 67
+    },
+    "orbit": {
+      "atlas": "assets/meridian/fighters/orbit/run/sprite-sheet-alpha.webp",
+      "key_poses": 24,
+      "frame_slots": 67
+    }
+  },
+  "total_frame_slots": 867
+}

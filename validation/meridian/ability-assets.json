@@ -1,0 +1,547 @@
+{
+  "sourceSheets": 12,
+  "runtimeSprites": 36,
+  "uniqueSprites": 36,
+  "results": [
+    {
+      "fighter": "aster",
+      "slot": "skill1",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        30,
+        31,
+        410,
+        487
+      ],
+      "sha256": "3770a45dd4ee0754cb87a87d70bf9cc0653b60507e6c73064dd54ea8d25d5e62"
+    },
+    {
+      "fighter": "aster",
+      "slot": "skill2",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        4,
+        494,
+        507
+      ],
+      "sha256": "ceb3f9313afac6bacd3a6399a3f82c74b623b57fd137da77365aec25dd5663a8"
+    },
+    {
+      "fighter": "aster",
+      "slot": "ultimate",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        23,
+        7,
+        493,
+        504
+      ],
+      "sha256": "13daec93131bee40acc98cd092e5106892f4662be95372fa5aac89d061d17de6"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill1",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        6,
+        90,
+        511,
+        452
+      ],
+      "sha256": "62e9b0be7cd2da50635fdf7f021264aa03e3a788088d532e56bb9c799e17afe7"
+    },
+    {
+      "fighter": "moro",
+      "slot": "skill2",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        14,
+        44,
+        489,
+        485
+      ],
+      "sha256": "91b2900a192f2beba1641ca250d65e36741a217ad9f550a19846557237f34a3c"
+    },
+    {
+      "fighter": "moro",
+      "slot": "ultimate",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        16,
+        504,
+        496
+      ],
+      "sha256": "7104084616dcfd6669c2ad544361783c4ba6ee50ebbd92d5d2d5da91bea900dd"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill1",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        9,
+        5,
+        414,
+        506
+      ],
+      "sha256": "316cca3450ddea542222fd8275520a265b9c3a3821b84a91a5c58891b352a917"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "skill2",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        66,
+        424,
+        434
+      ],
+      "sha256": "5f2d0d10f25a267f177a95ae113fb2909fb74107f5ed5b2a8a4032e0a8877da1"
+    },
+    {
+      "fighter": "beacon",
+      "slot": "ultimate",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        5,
+        507,
+        512
+      ],
+      "sha256": "a80e8435e5c381b7df344218d27cedf4954d3c44b9f5a9399f10875e97da3025"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill1",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        84,
+        136,
+        290,
+        482
+      ],
+      "sha256": "86c1fa60bb8ccc0cf4cfc59e2b69cdf8c8a79159a9bcb263d90cb3c64d35d995"
+    },
+    {
+      "fighter": "loom",
+      "slot": "skill2",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        60,
+        70,
+        393,
+        485
+      ],
+      "sha256": "7d0149a32e5cbd2f86979e3fe301bad656873f2dd29505e69b202d69f8f9ccb9"
+    },
+    {
+      "fighter": "loom",
+      "slot": "ultimate",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        59,
+        6,
+        444,
+        506
+      ],
+      "sha256": "65ae37fb3b761e30498cf80ee06a2211aaf9bfeeebe15b9bee7db2ba55e0d6e0"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill1",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        4,
+        43,
+        424,
+        457
+      ],
+      "sha256": "9028a6d19a68241977989c8009392ecd2a0d1d59b21a51ca8f8ea6cdde409fcf"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "skill2",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        27,
+        430,
+        480
+      ],
+      "sha256": "792a0985463ae33fdb7c55803a64da4a25ce8a1cb3d128a90fbb4a73bf5c81ed"
+    },
+    {
+      "fighter": "vesper",
+      "slot": "ultimate",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        1,
+        512,
+        512
+      ],
+      "sha256": "d3dc5ccd44982e294e97628790a471ff3f03d4553bff74c668e5528eb729d2b3"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill1",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        9,
+        89,
+        510,
+        395
+      ],
+      "sha256": "dd957172143cce64e2e2c512ae6360c18e03b4a8a8e83926a82c696424c1269c"
+    },
+    {
+      "fighter": "kite",
+      "slot": "skill2",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        17,
+        0,
+        340,
+        501
+      ],
+      "sha256": "1393f450849419a37d1bc675645935e425449ed43fb5b04d0f1865882eae46ca"
+    },
+    {
+      "fighter": "kite",
+      "slot": "ultimate",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        69,
+        506,
+        432
+      ],
+      "sha256": "b6f3129c7e073409392e7414e88b9b28031e2bcda737b8d3b34cafcaed5e7315"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill1",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        18,
+        7,
+        414,
+        497
+      ],
+      "sha256": "5f7a53f196c4521c96e28030485adc147a3bb75a339a563958e66b9ced4d6bf4"
+    },
+    {
+      "fighter": "iona",
+      "slot": "skill2",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        105,
+        471,
+        478
+      ],
+      "sha256": "07d00d03f0b81bb7a403d8738ca43cddbd9baa185669ea1684059c77fa70f493"
+    },
+    {
+      "fighter": "iona",
+      "slot": "ultimate",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        8,
+        512,
+        499
+      ],
+      "sha256": "0a37cfb657bde985af40ac5d4469939059e1a879c11cc7c29a507fb003d2c888"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill1",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        4,
+        37,
+        511,
+        486
+      ],
+      "sha256": "c78a869073185c3865b0dda447c639ae799b3322e6b2ca70e02866ef981203fc"
+    },
+    {
+      "fighter": "brink",
+      "slot": "skill2",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        0,
+        494,
+        501
+      ],
+      "sha256": "e1a9df682859568d420d1f2b78c2464a042c113a4e4ba09a565d6aa75272cbff"
+    },
+    {
+      "fighter": "brink",
+      "slot": "ultimate",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        3,
+        0,
+        512,
+        501
+      ],
+      "sha256": "dfb1a6ef03b12fcb55569b6ee8e62f26f565624dd4f05fe5ae99098944ec7a6a"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill1",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        11,
+        11,
+        446,
+        484
+      ],
+      "sha256": "ad8e25493d670f34a8aa9e89bb5894010686c659e65d5a22cbd65e46d274e007"
+    },
+    {
+      "fighter": "nix",
+      "slot": "skill2",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        17,
+        424,
+        498
+      ],
+      "sha256": "00d2e56a62d417fc7ecb18e3660c95b537b06bb9b96471f7b9b62bbacdc352c9"
+    },
+    {
+      "fighter": "nix",
+      "slot": "ultimate",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        23,
+        508,
+        493
+      ],
+      "sha256": "baf5db111133c564be83ae4445638a67fcfd299913d3c343781f3e96ece12437"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill1",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        19,
+        131,
+        419,
+        411
+      ],
+      "sha256": "eda4e512eb924fead3ffb372f1a69db5f8577678ca73538e0d60a27b3dcd655c"
+    },
+    {
+      "fighter": "torque",
+      "slot": "skill2",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        64,
+        459,
+        502
+      ],
+      "sha256": "ee299de2742ead61faf1329a378cfe9a2db7e410ab8e3959ed8dd025c49f087d"
+    },
+    {
+      "fighter": "torque",
+      "slot": "ultimate",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        9,
+        505,
+        504
+      ],
+      "sha256": "19b44b06f053a8fec238f76a1d047385d30c5314b7558b5eceec2ca15b7a8b1e"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill1",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        9,
+        63,
+        472,
+        455
+      ],
+      "sha256": "3cc71dbb50caedcde8c46a753537d71a709337d0cd871580c2de3bb2bb9cf547"
+    },
+    {
+      "fighter": "vela",
+      "slot": "skill2",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        79,
+        467,
+        428
+      ],
+      "sha256": "d2f8358a363a08fa5143b8b90617221c3a1b70d73a737c4a0bf6de18cb49a791"
+    },
+    {
+      "fighter": "vela",
+      "slot": "ultimate",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        11,
+        501,
+        498
+      ],
+      "sha256": "934c4cd2095ac6458b35e987a109ddc072d5533527f93d576e4022de3d105ba8"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill1",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        16,
+        95,
+        423,
+        475
+      ],
+      "sha256": "708eb0bcdaa61dd33a0e9884a9199e1ccf11dc6f35c011bd9d85900b8c1de4e6"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "skill2",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        8,
+        442,
+        475
+      ],
+      "sha256": "aefb2c6155f6a50b345eac03c6e0dd8d71dc06246faf4218cf5f6e9c07226231"
+    },
+    {
+      "fighter": "orbit",
+      "slot": "ultimate",
+      "size": [
+        512,
+        512
+      ],
+      "bounds": [
+        1,
+        9,
+        509,
+        503
+      ],
+      "sha256": "80adca9a4ff9ae01f2ee30cd02b5a912f0e2e3457502c6dcf1f22f3d607d3ee6"
+    }
+  ]
+}

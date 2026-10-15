@@ -1,0 +1,31 @@
+{
+  "errors": [],
+  "rosterCards": 12,
+  "paidVisible": false,
+  "invitationCreated": true,
+  "lobbySeats": 2,
+  "p1": {
+    "fighter": "VELA",
+    "mode": "in-match",
+    "asset": true
+  },
+  "p2": {
+    "fighter": "ASTER",
+    "mode": "in-match",
+    "asset": true
+  },
+  "skillFlyer": {
+    "player": "RICOCHET DISC",
+    "rival": "RICOCHET DISC",
+    "owners": [
+      "player",
+      "enemy"
+    ]
+  },
+  "ultimate": {
+    "player": "ACROSS TOWN",
+    "rival": "ACROSS TOWN",
+    "ownerPlayer": "VELA / PLAYER",
+    "ownerRival": "VELA / RIVAL"
+  }
+}

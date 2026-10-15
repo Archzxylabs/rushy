@@ -1,0 +1,21 @@
+{
+  "desktop": {
+    "rosterCards": 12,
+    "stages": 5,
+    "fight": {
+      "player": "venty",
+      "enemy": "bigchog",
+      "stage": "cwo-rally",
+      "mode": "versus",
+      "hud": "VELA"
+    }
+  },
+  "mobile": {
+    "rotated": "true",
+    "frameSize": {
+      "w": "844px",
+      "h": "390px"
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#14233b">
+<meta name="description" content="Rushy is an original free browser fighting game: twelve fighters, five districts, one city in motion.">
+<link rel="icon" href="assets/meridian/ui/favicon.svg"><link rel="preload" href="assets/meridian/characters/vela.webp" as="image" fetchpriority="high">
+<title>Rushy — Find your fight</title><link rel="stylesheet" href="meridian-home.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-nav" id="top"><a class="wordmark" href="#top"><img src="assets/meridian/ui/favicon.svg" alt=""><span>RUSHY</span></a><nav aria-label="Main navigation"><a href="#fighters">Fighters</a><a href="#city">The city</a><a href="#how">How to play</a></nav><a class="nav-play" href="play.html">PLAY FREE <span>↗</span></a></header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title"><div class="hero-copy"><span class="eyebrow"><i></i> THE CITY IS YOUR ARENA</span><h1 id="hero-title">FIND<br>YOUR <em>FIGHT.</em></h1><p>Twelve fighters. Five districts. One city in motion. Pick a rival, master your skills, and make your own route through Meridian.</p><div class="hero-actions"><a class="primary" href="play.html">ENTER THE ARENA <span>↗</span></a><a class="secondary" href="#fighters">MEET THE FIGHTERS ↓</a></div><div class="hero-meta"><span><strong>12</strong> PLAYABLE FIGHTERS</span><span><strong>05</strong> CITY DISTRICTS</span><span><strong>01</strong> NEXT ROUND</span></div></div><div class="hero-scene"><div class="hero-backdrop"></div><img class="hero-fighter hero-brink" src="assets/meridian/characters/brink.webp" alt="" fetchpriority="high"><img class="hero-fighter hero-vela" src="assets/meridian/characters/vela.webp" alt="" fetchpriority="high"><span class="hero-tag">HALO STATION / MERIDIAN CITY</span><span class="hero-ring" aria-hidden="true"></span></div></section>
+<div class="ticker" aria-hidden="true"><div>ROUTE TRIALS <i>✦</i> MERIDIAN CITY <i>✦</i> YOUR NEXT RIVAL <i>✦</i> ROUTE TRIALS <i>✦</i> MERIDIAN CITY <i>✦</i> YOUR NEXT RIVAL <i>✦</i></div></div>
+<section class="section fighters-section" id="fighters"><div class="section-heading"><div><span class="eyebrow">01 / THE CREW</span><h2>TWELVE WAYS<br>TO WIN.</h2></div><p>Every fighter has a different rhythm. Try them in Training, challenge the CPU, or bring a friend into a free duel.</p></div><div class="roster-layout"><div id="fighter-grid" class="fighter-grid" role="group" aria-label="Select a fighter"></div><article id="fighter-spotlight" class="fighter-spotlight" aria-live="polite"></article></div></section>
+<section class="section city-section" id="city"><div class="section-heading"><div><span class="eyebrow">02 / THE CITY</span><h2>FIVE DISTRICTS.<br>ONE ARENA.</h2></div><p>Fight above the rail, beside the tide, under glass, at the foundry, and through the market after dark.</p></div><div id="stage-cards" class="stage-cards"></div></section>
+<section class="section how-section" id="how"><div class="how-copy"><span class="eyebrow">03 / THE RULES</span><h2>YOUR MOVE.</h2><p>Start with a free match. Learn each fighter’s three-hit chain, two skills, and ultimate. Your next round is one click away.</p><a class="primary" href="play.html?mode=training">TRY TRAINING <span>↗</span></a></div><div class="control-list"><div><b>W A S D</b><span>Move, jump, crouch</span></div><div><b>SPACE</b><span>Three-hit attack chain</span></div><div><b>I / O</b><span>Two character skills</span></div><div><b>P</b><span>Ultimate</span></div><div><b>TOUCH</b><span>On-screen controls</span></div></div></section>
+</main>
+<footer><a class="wordmark" href="#top"><img src="assets/meridian/ui/favicon.svg" alt=""><span>RUSHY</span></a><p>Original characters and city artwork created for Rushy. Combat engine adapted from <a href="https://github.com/bangtutorial/aether-clash" target="_blank" rel="noopener">Aether Clash</a> under MIT.</p><a href="play.html">PLAY FREE ↗</a></footer>
+<script src="meridian-roster.js"></script><script src="match.js"></script><script src="meridian-home.js"></script>
+</body></html>

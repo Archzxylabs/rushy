@@ -1,0 +1,173 @@
+{
+  "name": "Rushy",
+  "characters": [
+    {
+      "id": "aster",
+      "display_name": "Aster",
+      "source_kit_id": "arco",
+      "title": "ROUTE MARSHAL",
+      "style": "Coordinator / relay drones",
+      "color": "#F6B544",
+      "names": [
+        "RELAY CHAIN",
+        "SIGNAL ANCHOR",
+        "LANE SHIFT",
+        "PRIORITY GRID"
+      ]
+    },
+    {
+      "id": "moro",
+      "display_name": "Moro",
+      "source_kit_id": "fenr",
+      "title": "SKYBIKE RACER",
+      "style": "Racer / skid hazards and aerial vaults",
+      "color": "#EE8C45",
+      "names": [
+        "BOARD CHAIN",
+        "DRIFT SPARK",
+        "GRIND VAULT",
+        "REDLINE LAP"
+      ]
+    },
+    {
+      "id": "beacon",
+      "display_name": "Beacon",
+      "source_kit_id": "solan",
+      "title": "CROWD CONDUCTOR",
+      "style": "Rally / shockwaves",
+      "color": "#E7A63C",
+      "names": [
+        "FLAG CHAIN",
+        "RALLY STANDARD",
+        "CALL RESPONSE",
+        "STANDING OVATION"
+      ]
+    },
+    {
+      "id": "loom",
+      "display_name": "Loom",
+      "source_kit_id": "edda",
+      "title": "GLASS GUARDIAN",
+      "style": "Defense / counter & summon",
+      "color": "#75CDBB",
+      "names": [
+        "SHIELD CHAIN",
+        "PRISM POST",
+        "REFRACT WALL",
+        "GLASS MAZE"
+      ]
+    },
+    {
+      "id": "vesper",
+      "display_name": "Vesper",
+      "source_kit_id": "naja",
+      "title": "NIGHT PATHFINDER",
+      "style": "Ribbon / long reach",
+      "color": "#C9669B",
+      "names": [
+        "RIBBON CHAIN",
+        "THREAD NEEDLE",
+        "BACKSTITCH",
+        "NIGHT WEAVE"
+      ]
+    },
+    {
+      "id": "kite",
+      "display_name": "Kite",
+      "source_kit_id": "cora",
+      "title": "AERIAL MECHANIC",
+      "style": "Zoner / drone swarm",
+      "color": "#A2D34E",
+      "names": [
+        "WING CHAIN",
+        "ROTOR TAG",
+        "CROSSWIND",
+        "AIR TRAFFIC"
+      ]
+    },
+    {
+      "id": "iona",
+      "display_name": "Iona",
+      "source_kit_id": "isolde",
+      "title": "GLACIER COURIER",
+      "style": "Lance / falling strikes",
+      "color": "#91C4DC",
+      "names": [
+        "LANCE CHAIN",
+        "GLACIAL PIN",
+        "SLED CHARGE",
+        "WHITEOUT ROUTE"
+      ]
+    },
+    {
+      "id": "brink",
+      "display_name": "Brink",
+      "source_kit_id": "haldor",
+      "title": "DOCK WORKER",
+      "style": "Heavy / ground control",
+      "color": "#E9A243",
+      "names": [
+        "GAUNTLET CHAIN",
+        "CARGO HOOK",
+        "PILE DRIVER",
+        "CRANE DROP"
+      ]
+    },
+    {
+      "id": "nix",
+      "display_name": "Nix",
+      "source_kit_id": "zanni",
+      "title": "BAZAAR MURALIST",
+      "style": "Trickster / disc & tether",
+      "color": "#EF6D87",
+      "names": [
+        "DISC CHAIN",
+        "COLOR BOMB",
+        "MASK SWAP",
+        "MURAL FLOOD"
+      ]
+    },
+    {
+      "id": "torque",
+      "display_name": "Torque",
+      "source_kit_id": "mira",
+      "title": "FOUNDRY ENGINEER",
+      "style": "Barrage / micro rockets",
+      "color": "#E89755",
+      "names": [
+        "GAUNTLET CHAIN",
+        "MAGNET MINE",
+        "PRESSURE VENT",
+        "FOUNDRY OVERLOAD"
+      ]
+    },
+    {
+      "id": "vela",
+      "display_name": "Vela",
+      "source_kit_id": "nib",
+      "title": "MAG-SKATE COURIER",
+      "style": "Rushdown / fast projectiles",
+      "color": "#31C7CF",
+      "names": [
+        "DISC CHAIN",
+        "RICOCHET DISC",
+        "CHECKPOINT BLINK",
+        "ACROSS TOWN"
+      ]
+    },
+    {
+      "id": "orbit",
+      "display_name": "Orbit",
+      "source_kit_id": "rhea",
+      "title": "GRAVITY CARTOGRAPHER",
+      "style": "Control / orbital field",
+      "color": "#B997DB",
+      "names": [
+        "ORB CHAIN",
+        "GRAVITY TAG",
+        "ORBIT PIVOT",
+        "SINGULARITY"
+      ]
+    }
+  ]
+}

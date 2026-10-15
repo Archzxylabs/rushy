@@ -1,0 +1,43 @@
+"""Check the actual menu path and mobile shell, with screenshots for review."""
+from playwright.sync_api import sync_playwright
+from pathlib import Path
+import json
+OUT=Path(__file__).resolve().parent
+report={'desktop':{},'mobile':{},'errors':[]}
+with sync_playwright() as p:
+    browser=p.chromium.launch(headless=True,args=['--no-sandbox'])
+    page=browser.new_page(viewport={'width':1440,'height':900},service_workers='block')
+    page.on('pageerror',lambda e:report['errors'].append(str(e)))
+    page.goto('http://127.0.0.1:5174/play.html',wait_until='load')
+    page.locator('#front-menu[data-screen="home"] .hub-persona').wait_for()
+    page.screenshot(path=str(OUT/'hub.png'))
+    page.locator('[data-cmd="versus"]').click()
+    page.locator('#front-menu[data-screen="select"] .persona-card').first.wait_for()
+    report['desktop']['rosterCards']=page.locator('.persona-card').count()
+    page.locator('[data-fighter="venty"]').click()
+    page.locator('[data-cmd="confirm"]').click()
+    page.locator('#front-menu[data-step="1"] .persona-card').first.wait_for()
+    page.locator('[data-fighter="bigchog"]').click()
+    page.wait_for_timeout(600)
+    page.screenshot(path=str(OUT/'select.png'))
+    page.locator('[data-cmd="confirm"]').click()
+    page.locator('#front-menu[data-screen="arena"] .map-pin').first.wait_for()
+    report['desktop']['stages']=page.locator('.map-pin').count()
+    page.locator('[data-stage="cwo-rally"]').click()
+    page.wait_for_timeout(600)
+    page.screenshot(path=str(OUT/'stage-select.png'))
+    page.locator('[data-cmd="start"]').click()
+    page.wait_for_function('!window.__game.snapshot().menuOpen && window.__game.snapshot().stageLoaded',timeout=30000)
+    report['desktop']['fight']=page.evaluate('''() => {const s=window.__game.snapshot();return {player:s.selectedCharacter,enemy:s.opponentCharacter,stage:s.stageId,mode:s.match.mode,hud:document.querySelector('#player-name').textContent}}''')
+    page.screenshot(path=str(OUT/'versus.png'))
+    mobile=browser.new_page(viewport={'width':390,'height':844},device_scale_factor=1,is_mobile=True,has_touch=True,service_workers='block')
+    mobile.on('pageerror',lambda e:report['errors'].append('mobile: '+str(e)))
+    mobile.goto('http://127.0.0.1:5174/mobile.html?touch=1',wait_until='load')
+    mobile.wait_for_function('document.querySelector("#game")?.contentWindow?.document.querySelector("#front-menu[data-screen=home] .hub-persona")',timeout=30000)
+    mobile.wait_for_timeout(900)
+    report['mobile']['rotated']=mobile.evaluate('document.documentElement.dataset.rotated')
+    report['mobile']['frameSize']=mobile.evaluate('({w:document.querySelector("#game").style.width,h:document.querySelector("#game").style.height})')
+    mobile.screenshot(path=str(OUT/'mobile.png'))
+    browser.close()
+(OUT/'flow-check.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps(report,indent=2))

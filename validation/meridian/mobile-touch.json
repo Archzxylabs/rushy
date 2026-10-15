@@ -1,0 +1,10 @@
+{
+  "errors": [],
+  "damage": 6,
+  "touchControlsVisible": true,
+  "skills": {
+    "skill1": 3,
+    "skill2": 6,
+    "ultimate": 18
+  }
+}
