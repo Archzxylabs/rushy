@@ -1,0 +1,16 @@
+{
+  "name": "rushy-arc-contracts",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=24"},
+  "scripts": {
+    "build": "forge build --root contracts",
+    "test": "forge test --root contracts",
+    "verify:mainnet": "node --env-file-if-exists=.env tools/verify-mainnet.mjs"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.4.0",
+    "viem": "2.57.4"
+  }
+}

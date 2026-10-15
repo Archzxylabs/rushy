@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.*
+!.env.example
+contracts/arc-mainnet.env
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+*.log
+.DS_Store

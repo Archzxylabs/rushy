@@ -1,0 +1,91 @@
+{
+  "chainId": 5042,
+  "chainName": "Arc mainnet",
+  "rpcUrl": "https://rpc.mainnet.arc.io",
+  "explorerUrl": "https://explorer.arc.io",
+  "token": {
+    "address": "0x3600000000000000000000000000000000000000",
+    "symbol": "USDC",
+    "decimals": 6
+  },
+  "nativeGas": {
+    "symbol": "USDC",
+    "decimals": 18
+  },
+  "deployedOn": "2026-10-14",
+  "lastCheckedAt": "2026-10-15T00:55:52.430Z",
+  "deployer": "0xcB5da6A6f55b66aCcd45f07a3cfc346408d562bB",
+  "roles": {
+    "OWNER": "0xd52e8a92937826e9874A0B972de01Ae5FA6D6c79",
+    "RESULT_SIGNER": "0xE3D7014A9DC4B3D1d89ACF6ECFfB713155217990",
+    "RELAY": "0x0950E77E0c108E8442351f9cEBD9695499b5C357",
+    "TREASURY": "0xEA2d8827B331C80649353f6f28525d10bfa44796"
+  },
+  "feeBps": 500,
+  "totalDeploymentFeeUSDC": "0.087863505873674975",
+  "contracts": {
+    "PaidDuelEscrow": {
+      "contract": "PaidDuelEscrow",
+      "address": "0xA6505430759EabF189b275251F72FDD357B0Abdc",
+      "transactionHash": "0xcfa1f5a6780cc781213f111aaaaebacee9b812f00e6c255aeae496c90e8021d3",
+      "blockNumber": "25913480",
+      "receiptStatus": "success",
+      "gasUsed": "2206966",
+      "effectiveGasPriceWei": "20000001337",
+      "feeUSDC": "0.044139322950713542",
+      "runtimeBytes": 9459,
+      "runtimeMatchesArtifact": true,
+      "configurationVerified": true,
+      "eip712DomainVerified": true,
+      "explorer": "https://explorer.arc.io/address/0xA6505430759EabF189b275251F72FDD357B0Abdc"
+    },
+    "HouseCupEscrow": {
+      "contract": "HouseCupEscrow",
+      "address": "0x38C8093907f6085e7c2Ad22335F3f4DA15466Efe",
+      "transactionHash": "0x4398d615a8c37311f5eb8d764ea14669b1f805cdf4de07227a8d78adc3ce0a22",
+      "blockNumber": "25913485",
+      "receiptStatus": "success",
+      "gasUsed": "2186209",
+      "effectiveGasPriceWei": "20000001337",
+      "feeUSDC": "0.043724182922961433",
+      "runtimeBytes": 9364,
+      "runtimeMatchesArtifact": true,
+      "configurationVerified": true,
+      "eip712DomainVerified": true,
+      "explorer": "https://explorer.arc.io/address/0x38C8093907f6085e7c2Ad22335F3f4DA15466Efe"
+    }
+  },
+  "domains": {
+    "PaidDuelEscrow": {
+      "name": "CHOG Paid Duel",
+      "version": "1",
+      "chainId": 5042,
+      "verifyingContract": "0xA6505430759EabF189b275251F72FDD357B0Abdc"
+    },
+    "HouseCupEscrow": {
+      "name": "CHOG House Cup",
+      "version": "1",
+      "chainId": 5042,
+      "verifyingContract": "0x38C8093907f6085e7c2Ad22335F3f4DA15466Efe"
+    }
+  },
+  "source": {
+    "repository": "https://github.com/haikarure/chog-clash",
+    "commit": "1109b530edac411df5058d20666ade5186677ac5"
+  },
+  "validationScope": "Deployment receipts, creation input, runtime, roles and domains checked. Complete real-USDC payment acceptance and independent audit have not been performed.",
+  "sourcePublication": {
+    "lastAttempt": "2026-10-14",
+    "status": "NOT_CONFIRMED",
+    "reason": "Explorer verification API returned a Cloudflare challenge; exact inputs retained in docs/arc-mainnet-verification/."
+  },
+  "solidityTests": {
+    "checkedOn": "2026-10-15",
+    "command": "forge test --root contracts",
+    "passed": 49,
+    "failed": 0,
+    "skipped": 0,
+    "fuzzRunsPerTest": 256,
+    "runtime": "Standard EVM with mock ERC-20"
+  }
+}

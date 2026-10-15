@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-15T00:55:52.430Z",
+  "chainId": 5042,
+  "blockNumber": "26010626",
+  "status": "DEPLOYMENT_VERIFIED",
+  "tokenDecimals": 6,
+  "contracts": [
+    {
+      "contract": "PaidDuelEscrow",
+      "address": "0xA6505430759EabF189b275251F72FDD357B0Abdc",
+      "transactionHash": "0xcfa1f5a6780cc781213f111aaaaebacee9b812f00e6c255aeae496c90e8021d3",
+      "receiptStatus": "success",
+      "deploymentBlock": "25913480",
+      "feeUSDC": "0.044139322950713542",
+      "creationInputMatches": true,
+      "runtimeMatches": true,
+      "configurationMatches": true,
+      "domainMatches": true
+    },
+    {
+      "contract": "HouseCupEscrow",
+      "address": "0x38C8093907f6085e7c2Ad22335F3f4DA15466Efe",
+      "transactionHash": "0x4398d615a8c37311f5eb8d764ea14669b1f805cdf4de07227a8d78adc3ce0a22",
+      "receiptStatus": "success",
+      "deploymentBlock": "25913485",
+      "feeUSDC": "0.043724182922961433",
+      "creationInputMatches": true,
+      "runtimeMatches": true,
+      "configurationMatches": true,
+      "domainMatches": true
+    }
+  ],
+  "transactionBroadcast": false,
+  "scope": "Read-only deployment/configuration checks; no payment acceptance test or security audit."
+}
